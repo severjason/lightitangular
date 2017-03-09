@@ -11,6 +11,7 @@ angular.module("routing", ["ngRoute"]).config(['$routeProvider', '$locationProvi
         })
             .when('/signup', {
             templateUrl: 'js/components/signup/signUpView.html',
+            controller: 'signUpController'
         })
             .otherwise({ redirectTo: '/' });
         $locationProvider.html5Mode(true);

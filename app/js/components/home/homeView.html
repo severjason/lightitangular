@@ -1,4 +1,7 @@
 <div id="products">
+    <div class="error" data-ng-show="!!error.status">
+        <h4>{{error.status}}</h4>
+    </div>
     <div class="product" data-ng-repeat = "product in products">
         <img data-ng-src="../images/{{product.img}}" data-ng-cloak>
         <div class="product_title" data-ng-cloak>{{product.title}}</div>

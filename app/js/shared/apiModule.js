@@ -1,15 +1,12 @@
-let apiModule = angular.module("api", []);
-apiModule.factory("apiService", function ($http) {
-    let apiUrl = "http://smktesting.herokuapp.com/";
-    let apiRequest = function (method, path) {
-        return $http({
-            method: method,
-            url: apiUrl + path
-        });
-    };
-    return {
-        getProducts: function () {
-            return apiRequest("GET", "api/products");
-        }
-    };
-});
+let apiModule = angular.module("api", ["underscore"]);
+apiModule.factory("apiService", ["$http", "_", function ($http, _) {
+        let apiUrl = "http://smktesting.herokuapp.com/";
+        return {
+            getProducts: function () {
+                return $http.get(apiUrl + "api/products/");
+            },
+            signUp: function (name, password) {
+                return $http.post(apiUrl + "api/register/", { "username": _.escape(name), "password": password });
+            }
+        };
+    }]);
