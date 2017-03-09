@@ -14,7 +14,8 @@
         sourceMaps = require('gulp-sourcemaps'),
         runSequence = require('run-sequence'),
         ts = require("gulp-typescript"),
-        tsProject = ts.createProject("tsconfig.json");
+        tsProject = ts.createProject("tsconfig.json"),
+        historyApiFallback = require('connect-history-api-fallback');
 
     /**
      *  All paths
@@ -37,6 +38,7 @@
         browserSync({
             server: {
                 baseDir: path.app,
+                middleware: [ historyApiFallback() ],
                 routes: {
                     '/node_modules': 'node_modules'
                 }

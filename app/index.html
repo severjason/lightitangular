@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="lightItApp" >
 <head>
-    <base href="/">
+    <base href="http://localhost:3000/index.html">
     <meta charset="utf-8">
 
     <title>Page Title</title>
@@ -11,7 +11,7 @@
     <!-- Mobile-friendly viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- build:css css/libs.min.css -->
+    <!-- build:css css/lib.min.css -->
     <link href="./css/libs.css" rel="stylesheet" media="all">
     <!-- endbuild -->
 
@@ -22,16 +22,7 @@
     <!-- build:css css/print.min.css -->
     <link href="./css/print.css" rel="stylesheet" media="all">
     <!-- endbuild -->
-    <!--build:js angular/angular.js defer -->
-    <script defer src="../node_modules/angular/angular-compiled.js"></script>
-    <script defer src="../node_modules/angular-route/angular-route.js"></script>
-    <!-- endbuild -->
-    <!--build:js angular/app.js defer -->
-    <script defer src="js/app.module.js"></script>
-    <script defer src="js/app.routes.js"></script>
-    <script defer src="js/shared/apiModule.js"></script>
-    <script defer src="js/components/home/homeController.js"></script>
-    <!-- endbuild -->
+
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -75,6 +66,21 @@
     </small>
 
 </footer>
+<!--build:js angular/angular.js defer -->
+<script defer src="../node_modules/angular/angular-compiled.js"></script>
+<script defer src="../node_modules/angular-route/angular-route.js"></script>
+<!-- endbuild -->
+<!--build:js lib/underscore.min.js defer -->
+<script defer src="../node_modules/underscore/underscore-min.js"></script>
+<!-- endbuild -->
+<!--build:js angular/app.js defer -->
+<script defer src="js/app.module.js"></script>
+<script defer src="js/app.routes.js"></script>
+<script defer src="js/lib/underscoreModule.js"></script>
+<script defer src="js/shared/apiModule.js"></script>
+<script defer src="js/components/home/homeController.js"></script>
+<script defer src="js/components/signup/signUpController.js"></script>
+<!-- endbuild -->
 <!--build:js js/main.min.js defer -->
 <!--<script defer src="js/main.js"></script>-->
 <!-- endbuild -->

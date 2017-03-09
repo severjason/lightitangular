@@ -1,19 +1,15 @@
-let apiModule: ng.IModule = angular.module("api", []);
+let apiModule: ng.IModule = angular.module("api", ["underscore"]);
 
-apiModule.factory("apiService", function ($http: ng.IHttpService) {
+apiModule.factory("apiService", ["$http", "_", function ($http: ng.IHttpService, _:underscore):any {
 
     let apiUrl: string = "http://smktesting.herokuapp.com/";
 
-    let apiRequest: any = function (method: string, path: string) {
-        return $http({
-            method: method,
-            url: apiUrl + path
-        });
-    };
-
     return {
-        getProducts: function () {
-            return apiRequest("GET", "api/products");
+        getProducts: function ():any {
+            return $http.get(apiUrl + "api/products/");
+        },
+        signUp: function (name:string, password:string):any {
+            return $http.post(apiUrl + "api/register/", {"username":_.escape(name), "password": password});
         }
-    }
-});
+    };
+}]);
