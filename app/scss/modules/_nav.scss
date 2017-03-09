@@ -1,0 +1,17 @@
+nav#navigation {
+  min-height: $nav_height;
+  margin: 0 auto 20px;
+  //border: $test_border;
+  border-radius: 1px;
+
+  .nav_buttons {
+    float: left;
+  }
+  .auth_buttons {
+    float: right;
+  }
+
+  #logout {
+    display: none;
+  }
+}

@@ -25,7 +25,8 @@
         images: 'app/images/**/*.*+(png|jpeg|jpg|svg|gif)',
         fonts: ['node_modules/bootstrap-sass/assets/fonts/**/*'],
         ts: ['app/ts/**/*.ts'],
-        tsCompiled: 'ts/compiled/',
+        tsCompiled: 'js/',
+        angularViews:'app/ts/**/**/*.html',
         js: ['app/js/**/*.js']
     };
 
@@ -44,7 +45,7 @@
     });
 
     /**
-     *  All paths
+     *  Css task
      */
     gulp.task('css', function () {
         return gulp.src(path.scss)
@@ -96,7 +97,24 @@
     });
 
     /**
-     *  AMove all fonts to dist and app
+     *  Move all html to app
+     */
+    gulp.task('viewsToApp', function () {
+        return gulp.src(path.angularViews)
+            .pipe(gulp.dest(path.app + path.tsCompiled));
+    });
+
+    /**
+     *  Move all html to dist
+     */
+    gulp.task('viewsToDist', function () {
+        return gulp.src(path.angularViews)
+            .pipe(gulp.dest('dist/' + path.tsCompiled));
+    });
+
+
+    /**
+     *  Move all fonts to dist and app
      */
     gulp.task('fonts', function () {
         return gulp.src(path.fonts)
@@ -120,25 +138,30 @@
     });
 
     /**
-     *  Watch task - for sass
+     *  Watch task
      */
     gulp.task('watch', ['browserSync', 'css'], function () {
         gulp.watch(path.ts, ['ts']);
         gulp.watch(path.scss, ['css']);
-        gulp.watch([path.app + "*.html", path.scss, path.app + path.tsCompiled + "**/*.js"]).on('change', browserSync.reload);
+        gulp.watch(path.angularViews,['viewsToApp']);
+        gulp.watch([
+            path.app + "*.html",
+            path.scss, path.app + path.tsCompiled + "**/*.js",
+            path.app + path.tsCompiled + "**/**/*.html"])
+            .on('change', browserSync.reload);
     });
 
     /**
      *  Task to builds an app for production
      */
     gulp.task('build', function () {
-        runSequence(['css','ts', 'useref', 'img', 'fonts'])
+        runSequence(['css','ts', 'viewsToDist', 'useref', 'img', 'fonts'])
     });
 
     /**
      *  Default task
      */
     gulp.task('default', function () {
-        runSequence(['css', 'fonts', 'browserSync', 'watch'])
+        runSequence(['css', 'fonts', 'viewsToApp', 'browserSync', 'watch'])
     });
 }());

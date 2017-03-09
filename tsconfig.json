@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "noImplicitAny": true,
+    "module": "es6",
     "target": "es6",
-    "outDir": "app/ts/compiled"
+    "outDir": "app/js"
   },
   "exclude": [
     "node_modules"
