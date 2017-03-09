@@ -68,6 +68,8 @@ section#content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around; }
+    section#content #products .error {
+      color: #c0392b; }
     section#content #products .product {
       width: 300px;
       height: 300px;
@@ -163,21 +165,27 @@ section#content {
   section#content .app_forms {
     margin: 10px auto 0;
     max-width: 400px;
-    padding: 10px; }
-    section#content .app_forms .warning {
+    padding: 10px;
+    /*.warning {
       position: absolute;
       display: none;
-      width: 300px;
+      width: $warning_width;
       left: 50%;
-      margin-left: -150px;
-      height: 40px;
-      line-height: 40px;
-      font-size: 14px;
-      color: #c0392b; }
+      margin-left: - $warning_width / 2;
+      height: $warning_height;
+      line-height: $warning_height;
+      font-size: $warning_font_size;
+      color: $alert;
+    }*/ }
+    section#content .app_forms .form-group {
+      margin-bottom: 30px; }
+    section#content .app_forms .warning {
+      position: absolute;
+      margin-top: 5px;
+      color: #c0392b;
+      font-size: 14px; }
     section#content .app_forms .input_warning {
       border-color: #c0392b; }
-    section#content .app_forms button {
-      margin-top: 40px; }
   section#content .loader {
     display: none;
     position: absolute;

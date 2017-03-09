@@ -7,6 +7,10 @@ section#content {
     flex-wrap: wrap;
     justify-content: space-around;
 
+    .error {
+      color:$alert;
+    }
+
     .product{
       width: $product_width;
       height: $product_height;
@@ -163,7 +167,17 @@ section#content {
     max-width: $forms_width;
     padding: $forms_margin;
 
+    .form-group {
+      margin-bottom: 30px;
+    }
+
     .warning {
+      position: absolute;
+      margin-top: 5px;
+      color: $alert;
+      font-size: $warning_font_size;
+    }
+    /*.warning {
       position: absolute;
       display: none;
       width: $warning_width;
@@ -173,12 +187,9 @@ section#content {
       line-height: $warning_height;
       font-size: $warning_font_size;
       color: $alert;
-    }
+    }*/
     .input_warning {
       border-color: $alert;
-    }
-    button {
-      margin-top: $warning_height;
     }
   } //.app_forms
 
