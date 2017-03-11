@@ -1,4 +1,4 @@
-let underscore = angular.module("underscore", []);
-underscore.factory("_", function () {
-    return window._;
-});
+let underscore = angular.module("appUnderscore", []);
+underscore.factory("_", ["$window", function ($window) {
+        return $window._;
+    }]);

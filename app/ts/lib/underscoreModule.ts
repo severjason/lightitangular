@@ -1,5 +1,5 @@
-let underscore: ng.IModule = angular.module("underscore",[]);
+let underscore: ng.IModule = angular.module("appUnderscore",[]);
 
-underscore.factory("_", function ():any {
-    return window._;
-})
+underscore.factory("_", ["$window", function ($window:any):any {
+    return $window._;
+}]);

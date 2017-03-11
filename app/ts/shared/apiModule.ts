@@ -1,6 +1,8 @@
-let apiModule: ng.IModule = angular.module("api", ["underscore"]);
+/// <reference path="../../../node_modules/@types/underscore/index.d.ts" />
+import UnderscoreStatic = _.UnderscoreStatic;
+let apiModule: ng.IModule = angular.module("appAPI", ["appUnderscore"]);
 
-apiModule.factory("apiService", ["$http", "_", function ($http: ng.IHttpService, _:underscore):any {
+apiModule.factory("apiService", ["$http", "_", function ($http: ng.IHttpService, _:UnderscoreStatic):any {
 
     let apiUrl: string = "http://smktesting.herokuapp.com/";
 

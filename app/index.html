@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="lightItApp" >
+<html lang="en" >
 <head>
     <base href="http://localhost:3000/index.html">
     <meta charset="utf-8">
@@ -27,7 +27,7 @@
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
-<body class="noselect">
+<body data-ng-app="lightItApp" >
 
 <header role="banner" class="max_width">
     <div class="header_text left bold">
@@ -69,6 +69,7 @@
 <!--build:js angular/angular.js defer -->
 <script defer src="../node_modules/angular/angular-compiled.js"></script>
 <script defer src="../node_modules/angular-route/angular-route.js"></script>
+<script defer src="../node_modules/angular-cookie/angular-cookie.js"></script>
 <!-- endbuild -->
 <!--build:js lib/underscore.min.js defer -->
 <script defer src="../node_modules/underscore/underscore-min.js"></script>
@@ -78,8 +79,9 @@
 <script defer src="js/app.routes.js"></script>
 <script defer src="js/lib/underscoreModule.js"></script>
 <script defer src="js/shared/apiModule.js"></script>
-<script defer src="js/components/home/homeController.js"></script>
-<script defer src="js/components/signup/signUpController.js"></script>
+<script defer src="js/components/home/HomeController.js"></script>
+<script defer src="js/components/signup/SignUpController.js"></script>
+<script defer src="js/components/signup/PasswordConfirmDirective.js"></script>
 <!-- endbuild -->
 <!--build:js js/main.min.js defer -->
 <!--<script defer src="js/main.js"></script>-->

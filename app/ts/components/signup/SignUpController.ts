@@ -1,6 +1,6 @@
-let signUpModule: ng.IModule = angular.module("signup", []);
+let signUpModule: ng.IModule = angular.module("appSignUp", []);
 
-signUpModule.controller("signUpController", ["$scope", "apiService", function ($scope: ng.IScope, apiService: any): void {
+signUpModule.controller("SignUpController", ["$scope", "apiService", function ($scope: ng.IScope, apiService: any): void {
     $scope.submit = function (newUser: any): void {
         apiService.signUp(newUser.name, newUser.password)
             .then(function (response: string) {
@@ -8,6 +8,5 @@ signUpModule.controller("signUpController", ["$scope", "apiService", function ($
             }, function (error: Error) {
                 console.log(error.message)
             })
-
     }
 }]);

@@ -1,5 +1,5 @@
-let signUpModule = angular.module("signup", []);
-signUpModule.controller("signUpController", ["$scope", "apiService", function ($scope, apiService) {
+let signUpModule = angular.module("appSignUp", []);
+signUpModule.controller("SignUpController", ["$scope", "apiService", function ($scope, apiService) {
         $scope.submit = function (newUser) {
             apiService.signUp(newUser.name, newUser.password)
                 .then(function (response) {

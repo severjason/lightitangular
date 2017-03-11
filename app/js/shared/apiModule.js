@@ -1,4 +1,4 @@
-let apiModule = angular.module("api", ["underscore"]);
+let apiModule = angular.module("appAPI", ["appUnderscore"]);
 apiModule.factory("apiService", ["$http", "_", function ($http, _) {
         let apiUrl = "http://smktesting.herokuapp.com/";
         return {

@@ -15,9 +15,12 @@
                 <div class="warning" data-ng-show="sign_up_form.password.$error.required" >Password is required!</div>
             </div>
         </div>
-        <div class="form-group no_margin">
-            <label for="sigh_up_password_confirm" class="control-label">Confirm password</label>
-            <input type="password" class="form-control" id="sigh_up_password_confirm" placeholder="Confirm your password" data-ng-model="newUser.passwordConfirm">
+        <div class="form-group" data-ng-class="{ 'has-error': (sign_up_form.$submitted || sign_up_form.passwordConfirm.$touched) && sign_up_form.passwordConfirm.$error.errorCompareTo }">
+            <label for="sigh_up_password_confirm" class="control-label" >Confirm password</label>
+            <input type="password" class="form-control" id="sigh_up_password_confirm" name="passwordConfirm" placeholder="Confirm your password" data-ng-model="newUser.passwordConfirm" data-compare-to="newUser.password" >
+            <div data-ng-show="sign_up_form.$submitted || sign_up_form.passwordConfirm.$touched">
+                <div class="warning" data-ng-show="sign_up_form.passwordConfirm.$error.errorCompareTo" >Passwords don`t match!</div>
+            </div>
         </div>
         <div class="form-group">
             <div class="text-center">

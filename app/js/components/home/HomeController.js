@@ -1,5 +1,5 @@
-let homeModule = angular.module("home", []);
-homeModule.controller("homeController", ["$scope", "apiService", function ($scope, apiService) {
+let homeModule = angular.module("appHome", []);
+homeModule.controller("HomeController", ["$scope", "apiService", function ($scope, apiService) {
         apiService.getProducts()
             .then(function (response) {
             $scope.products = response.data;

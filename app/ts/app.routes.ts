@@ -1,19 +1,18 @@
 /// <reference path="../../node_modules/@types/angular-route/index.d.ts" />
-angular.module("routing", ["ngRoute"]).config(['$routeProvider', '$locationProvider',
-    function ($routeProvider: angular.route.IRouteProvider, $locationProvider:ng.ILocationProvider) {
+let appRouting = angular.module("appRouting", ["ngRoute"]);
+
+appRouting.config(['$routeProvider', function ($routeProvider: angular.route.IRouteProvider):void {
         $routeProvider
             .when('/', {
-                templateUrl: 'js/components/home/homeView.html',
-                controller: 'homeController'
+                templateUrl: 'js/components/home/_homeView.html',
+                controller: 'HomeController'
             })
             .when('/login',{
-                templateUrl: 'js/components/login/loginView.html',
+                templateUrl: 'js/components/login/_loginView.html',
             })
             .when('/signup',{
-                templateUrl: 'js/components/signup/signUpView.html',
-                controller: 'signUpController'
+                templateUrl: 'js/components/signup/_signUpView.html',
+                controller: 'SignUpController'
             })
             .otherwise({ redirectTo: '/' });
-        $locationProvider.html5Mode(true);
-        $locationProvider.hashPrefix('!');
     }]);
