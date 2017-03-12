@@ -19,11 +19,11 @@ var lightItApp;
         }
         ;
         getToken() {
-            return (this.cookie(this.cookieToken)) ? this.cookie(this.cookieToken) : false;
+            return (this.cookie(this.cookieToken)) ? this.cookie(this.cookieToken) : "";
         }
         ;
         getUserName() {
-            return (this.cookie(this.cookieUserName)) ? this.cookie(this.cookieUserName) : false;
+            return (this.cookie(this.cookieUserName)) ? this.cookie(this.cookieUserName) : "";
         }
         ;
         remove() {

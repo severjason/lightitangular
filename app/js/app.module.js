@@ -11,6 +11,6 @@ var lightItApp;
     }
     App.$inject = ['$locationProvider'];
     angular
-        .module("lightItApp", ["appRouting", "appAPI", "appHome", "appSignUp"])
+        .module("lightItApp", ["appRouting", "appAPI", "appHome", "appSignUp", "appLogin"])
         .config(App);
 })(lightItApp || (lightItApp = {}));

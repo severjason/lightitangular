@@ -9,7 +9,7 @@ var lightItApp;
             apiService.getProducts()
                 .then((response) => {
                 $scope.products = response.data;
-                console.log(userService.getUserName());
+                console.log(userService.getToken());
             }, (error) => {
                 $scope.error = {
                     status: "Unable to get all product: " + error.message
