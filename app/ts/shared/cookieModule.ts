@@ -2,7 +2,14 @@
 module lightItApp {
     "use strict";
 
-    class AppCookie {
+    export interface AppCookieInterface extends ng.IDirective {
+        save(name?: string, token?: string): void;
+        getToken(): string | boolean
+        getUserName(): string | boolean;
+        remove(): void;
+    }
+
+    class AppCookie implements AppCookieInterface {
 
         public cookieUserName: string;
         public cookieToken: string;
@@ -17,24 +24,24 @@ module lightItApp {
             this._cookie = ipCookie;
         };
 
-        get cookie():angular.cookie.CookieService {
+        get cookie(): angular.cookie.CookieService {
             return this._cookie;
         }
 
-        private save(name: string, token: string): void {
+        save(name: string, token: string): void {
             this.cookie(this.cookieUserName, name);
             this.cookie(this.cookieToken, token);
         };
 
-        private getToken(): string | boolean {
-            return (this.cookie(this.cookieToken)) ? this.cookie(this.cookieToken) : false;
+        getToken(): string | boolean {
+            return (this.cookie(this.cookieToken)) ? this.cookie(this.cookieToken) : "";
         };
 
-        private getUserName(): string|boolean {
-            return (this.cookie(this.cookieUserName)) ? this.cookie(this.cookieUserName) : false;
+        getUserName(): string|boolean {
+            return (this.cookie(this.cookieUserName)) ? this.cookie(this.cookieUserName) : "";
         };
 
-        private remove(): void {
+        remove(): void {
             this.cookie.remove(this.cookieUserName);
             this.cookie.remove(this.cookieToken);
         };
