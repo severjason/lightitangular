@@ -1,9 +1,19 @@
-/// <reference path="../../node_modules/@types/angular/index.d.ts" />
-let appName:string = "lightItApp";
+/// <reference path="reference/_all.ts" />
+module lightItApp {
+    "use strict";
 
-let app = angular.module(appName, ["appRouting" , "appAPI", "appHome", "appSignUp"]);
+    class App {
 
-app.config(['$locationProvider', function ($locationProvider: ng.ILocationProvider):void {
-    $locationProvider.html5Mode(true);
-    $locationProvider.hashPrefix('!');
-}]);
+        static $inject: Array<string> = ['$locationProvider'];
+
+        constructor(private $locationProvider: ng.ILocationProvider) {
+            $locationProvider.html5Mode(true);
+            $locationProvider.hashPrefix('!');
+        }
+    }
+    angular
+        .module("lightItApp", ["appRouting", "appAPI", "appHome", "appSignUp"])
+        .config(App);
+
+}
+

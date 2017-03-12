@@ -1,4 +1,15 @@
-let underscore = angular.module("appUnderscore", []);
-underscore.factory("_", ["$window", function ($window) {
-        return $window._;
-    }]);
+var lightItApp;
+(function (lightItApp) {
+    "use strict";
+    class Underscore {
+        constructor($window) {
+            this.$window = $window;
+            return $window._;
+        }
+    }
+    Underscore.$inject = ["$window"];
+    Underscore.serviceName = "_";
+    angular
+        .module("appUnderscore", [])
+        .factory(Underscore.serviceName, Underscore);
+})(lightItApp || (lightItApp = {}));
