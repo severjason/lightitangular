@@ -12,7 +12,7 @@ module lightItApp {
         }
     }
     angular
-        .module("lightItApp", ["appRouting", "appAPI", "appHome", "appSignUp"])
+        .module("lightItApp", ["appRouting", "appAPI", "appHome", "appSignUp", "appLogin"])
         .config(App);
 
 }
