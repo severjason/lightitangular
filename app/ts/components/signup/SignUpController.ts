@@ -4,9 +4,9 @@ module lightItApp {
     class SignUpController {
 
         static $inject: Array<string> = ["$scope", "apiService", "userService"];
-        static controllerName:string = "SignUpController";
+        static controllerName: string = "SignUpController";
 
-        constructor(private $scope: ng.IScope, private apiService: any, private userService:any) {
+        constructor(private $scope: ng.IScope, private apiService: AppApiInterface, private userService: AppCookieInterface) {
             $scope.submit = (newUser: any): void => {
                 apiService.signUp(newUser.name, newUser.password)
                     .then((response: any) => {
