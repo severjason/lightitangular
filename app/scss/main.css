@@ -184,8 +184,21 @@ section#content {
       margin-top: 5px;
       color: #c0392b;
       font-size: 14px; }
+    section#content .app_forms .api_warning {
+      position: absolute;
+      width: 300px;
+      left: 50%;
+      margin-left: -150px;
+      margin-top: 10px;
+      text-align: center;
+      color: #c0392b;
+      font-size: 14px;
+      font-weight: bold; }
     section#content .app_forms .input_warning {
       border-color: #c0392b; }
+  section#content .success_alert {
+    margin-top: 50px;
+    color: #27ae60; }
   section#content .loader {
     display: none;
     position: absolute;

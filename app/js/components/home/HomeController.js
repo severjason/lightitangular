@@ -12,7 +12,8 @@ var lightItApp;
                 console.log(userService.getToken());
             }, (error) => {
                 $scope.error = {
-                    status: "Unable to get all product: " + error.message
+                    status: true,
+                    message: "Unable to get all products: " + error.message
                 };
             });
         }

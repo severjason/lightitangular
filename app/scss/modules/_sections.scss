@@ -176,7 +176,22 @@ section#content {
       margin-top: 5px;
       color: $alert;
       font-size: $warning_font_size;
+
+
     }
+    .api_warning {
+      position: absolute;
+      width: $product_width;
+      left: 50%;
+      margin-left: -$product_width/2;
+      margin-top: 10px;
+      text-align: center;
+      color: $alert;
+      font-size: $warning_font_size;
+      font-weight: bold;
+
+    }
+
     /*.warning {
       position: absolute;
       display: none;
@@ -193,6 +208,10 @@ section#content {
     }
   } //.app_forms
 
+  .success_alert {
+    margin-top: 50px;
+    color: $success;
+  }
 
   .loader {
     display: none;

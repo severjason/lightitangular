@@ -1,22 +1,23 @@
-module lightItApp {
+namespace lightItApp {
     "use strict";
 
     class LoginController {
 
-        static $inject: Array<string> = ["$scope", "apiService", "userService"];
-        static controllerName: string = "LoginController";
+        public static $inject: string[] = ["$scope", "apiService", "userService"];
+        public static controllerName: string = "LoginController";
 
-
-        constructor(private $scope: ng.IScope, private apiService: AppApiInterface, private userService: AppCookieInterface) {
+        constructor(private $scope: ng.IScope,
+                    private apiService: IApi,
+                    private userService: ICookie) {
             $scope.submit = (user: any): void => {
                 apiService.login(user.name, user.password)
                     .then((response: any) => {
                         console.log(response.data);
                         userService.save(user.name, response.data.token);
                     }, (error: Error) => {
-                        console.log(error.message)
-                    })
-            }
+                        console.log(error.message);
+                    });
+            };
         }
     }
 

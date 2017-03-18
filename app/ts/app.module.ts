@@ -1,14 +1,13 @@
-/// <reference path="reference/_all.ts" />
-module lightItApp {
+namespace lightItApp {
     "use strict";
 
     class App {
 
-        static $inject: Array<string> = ['$locationProvider'];
+        public static $inject: string[] = ["$locationProvider"];
 
         constructor(private $locationProvider: ng.ILocationProvider) {
             $locationProvider.html5Mode(true);
-            $locationProvider.hashPrefix('!');
+            $locationProvider.hashPrefix("!");
         }
     }
     angular
@@ -16,4 +15,3 @@ module lightItApp {
         .config(App);
 
 }
-

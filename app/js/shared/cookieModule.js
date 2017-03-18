@@ -1,17 +1,16 @@
-/// <reference path="../reference/_all.ts" />
 var lightItApp;
 (function (lightItApp) {
     "use strict";
     class AppCookie {
-        constructor(ipCookie) {
-            this.ipCookie = ipCookie;
+        constructor(ipCookieService) {
+            this.ipCookieService = ipCookieService;
             this.cookieUserName = "username";
             this.cookieToken = "token";
-            this._cookie = ipCookie;
+            this.ipCookie = ipCookieService;
         }
         ;
         get cookie() {
-            return this._cookie;
+            return this.ipCookie;
         }
         save(name, token) {
             this.cookie(this.cookieUserName, name);

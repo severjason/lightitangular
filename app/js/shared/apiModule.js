@@ -1,52 +1,51 @@
-/// <reference path="../reference/_all.ts" />
 var lightItApp;
 (function (lightItApp) {
     "use strict";
     class API {
         constructor($http, _, userService) {
-            this._apiUrl = "http://smktesting.herokuapp.com/";
-            this._productsUrl = "api/products/";
-            this._signUpUrl = "api/register/";
-            this._loginUrl = "api/login/";
-            this._http = $http;
-            this._underscore = _;
-            this._userService = userService;
+            this.apiUrlStr = "http://smktesting.herokuapp.com/";
+            this.productsUrlStr = "api/products/";
+            this.signUpUrlStr = "api/register/";
+            this.loginUrlStr = "api/login/";
+            this.httpService = $http;
+            this.underscore = _;
+            this.userCookieService = userService;
         }
         get http() {
-            return this._http;
+            return this.httpService;
         }
         get _() {
-            return this._underscore;
+            return this.underscore;
         }
         get apiUrl() {
-            return this._apiUrl;
+            return this.apiUrlStr;
         }
         get productsUrl() {
-            return this._productsUrl;
+            return this.productsUrlStr;
         }
         get signUpUrl() {
-            return this._signUpUrl;
+            return this.signUpUrlStr;
         }
         get loginUrl() {
-            return this._loginUrl;
+            return this.loginUrlStr;
         }
         get userService() {
-            return this._userService;
+            return this.userCookieService;
         }
         getProducts() {
             return this.http.get(this.apiUrl + this.productsUrl);
         }
-        signUp(name, password) {
+        signUp(signUpName, signUpPassword) {
             return this.http.post(this.apiUrl + this.signUpUrl, {
-                "username": this._.escape(name),
-                "password": password
+                username: this._.escape(signUpName),
+                password: signUpPassword,
             });
         }
-        login(name, password) {
+        login(loginName, loginPassword) {
             return this.http.post(this.apiUrl + this.loginUrl, {
-                headers: { 'x-access-token': this.userService.getToken() },
-                "username": this._.escape(name),
-                "password": password
+                headers: { "x-access-token": this.userService.getToken() },
+                username: this._.escape(loginName),
+                password: loginPassword,
             });
         }
     }

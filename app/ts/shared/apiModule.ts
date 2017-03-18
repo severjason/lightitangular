@@ -1,80 +1,81 @@
-/// <reference path="../reference/_all.ts" />
-module lightItApp {
+namespace lightItApp {
     "use strict";
+
     import UnderscoreStatic = _.UnderscoreStatic;
 
-    export interface AppApiInterface extends ng.IDirective {
+    export interface IApi extends ng.IDirective {
         getProducts(): any;
         signUp(name: string, password: string): any;
         login(name: string, password: string): any;
     }
 
     class API {
-        private _apiUrl: string;
-        private _productsUrl: string;
-        private _signUpUrl: string;
-        private _loginUrl: string;
-        private _http: ng.IHttpService;
-        private _underscore: UnderscoreStatic;
-        private _userService: AppCookieInterface;
 
-        static $inject: Array<string> = ["$http", "_", "userService"];
-        static serviceName: string = "apiService";
+        public static $inject: string[] = ["$http", "_", "userService"];
+        public static serviceName: string = "apiService";
 
-        constructor($http: ng.IHttpService, _: UnderscoreStatic, userService: AppCookieInterface) {
-            this._apiUrl = "http://smktesting.herokuapp.com/";
-            this._productsUrl = "api/products/";
-            this._signUpUrl = "api/register/";
-            this._loginUrl = "api/login/";
-            this._http = $http;
-            this._underscore = _;
-            this._userService = userService;
+        private apiUrlStr: string;
+        private productsUrlStr: string;
+        private signUpUrlStr: string;
+        private loginUrlStr: string;
+        private httpService: ng.IHttpService;
+        private underscore: UnderscoreStatic;
+        private userCookieService: ICookie;
+
+        constructor($http: ng.IHttpService, _: UnderscoreStatic, userService: ICookie) {
+            this.apiUrlStr = "http://smktesting.herokuapp.com/";
+            this.productsUrlStr = "api/products/";
+            this.signUpUrlStr = "api/register/";
+            this.loginUrlStr = "api/login/";
+            this.httpService = $http;
+            this.underscore = _;
+            this.userCookieService = userService;
         }
 
         get http(): ng.IHttpService {
-            return this._http;
+            return this.httpService;
         }
 
         get _(): UnderscoreStatic {
-            return this._underscore;
+            return this.underscore;
         }
 
         get apiUrl(): string {
-            return this._apiUrl;
+            return this.apiUrlStr;
         }
 
         get productsUrl(): string {
-            return this._productsUrl;
+            return this.productsUrlStr;
         }
 
         get signUpUrl(): string {
-            return this._signUpUrl;
+            return this.signUpUrlStr;
         }
 
         get loginUrl(): string {
-            return this._loginUrl;
+            return this.loginUrlStr;
         }
 
-        get userService():any {
-            return this._userService;
+        get userService(): any {
+            return this.userCookieService;
         }
 
-        getProducts(): any {
+        public getProducts(): any {
             return this.http.get(this.apiUrl + this.productsUrl);
         }
 
-        signUp(name: string, password: string): any {
+        public signUp(signUpName: string, signUpPassword: string): any {
             return this.http.post(this.apiUrl + this.signUpUrl, {
-                "username": this._.escape(name),
-                "password": password
+                username: this._.escape(signUpName),
+                password: signUpPassword,
             });
         }
 
-        login(name: string, password: string): any {
+        public login(loginName: string, loginPassword: string): any {
             return this.http.post(this.apiUrl + this.loginUrl, {
-                headers: {'x-access-token': this.userService.getToken()},
-                "username": this._.escape(name),
-                "password": password
+                headers: {"x-access-token": this.userService.getToken()},
+                username: this._.escape(loginName),
+                password: loginPassword,
             });
         }
     }
