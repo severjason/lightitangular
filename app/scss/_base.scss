@@ -1,6 +1,8 @@
+@import 'variables';
+
 html {
-  font-size: 62.5%;
   box-sizing: border-box;
+  font-size: 62.5%;
 }
 
 *,*:before, *:after {
@@ -26,8 +28,8 @@ button:focus, button.btn.btn-default:focus {
   clear: both;
 }
 
-.max_width {
-  max-width: $app_max_width;
+.max-width {
+  max-width: $app-max-width;
 }
 
 .noselect {
@@ -47,20 +49,20 @@ button:focus, button.btn.btn-default:focus {
 }
 
 button, button.btn, a, a.btn {
-  min-width: $nav_buttons_width;
-  margin-top: $nav_padding;
-  padding-top: 0;
+  border-radius: $border-radius;
+  line-height: $buttons-height;
+  margin-top: $nav-padding;
+  min-width: $nav-buttons-width;
   padding-bottom: 0;
-  line-height: $buttons_height;
+  padding-top: 0;
   //height: $buttons_height;
-  border-radius: $border_radius;
 }
 
 input.form-control {
-  height: $buttons_height;
-  border-radius: $border_radius;
+  border-radius: $border-radius;
+  height: $buttons-height;
 }
 
-.no_margin {
+.no-margin {
   margin: 0;
 }

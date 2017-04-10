@@ -1,10 +1,10 @@
-module lightItApp {
+namespace lightItApp {
     "use strict";
 
     class HomeController {
 
-        static $inject: Array<string> = ["$scope", "apiService", "userService"];
-        static controllerName:string = "HomeController";
+        public static $inject: string[] = ["$scope", "apiService", "userService"];
+        public static controllerName: string = "HomeController";
 
         constructor(private $scope: ng.IScope, private apiService: IApi, private userService: ICookie) {
             apiService.getProducts()
@@ -14,7 +14,7 @@ module lightItApp {
                 }, (error: Error): void => {
                     $scope.error = {
                         status: true,
-                        message: "Unable to get all products: " + error.message
+                        message: "Unable to get all products: " + error.message,
                     };
                 });
         }
@@ -24,6 +24,3 @@ module lightItApp {
         .module("appHome", ["appCookie"])
         .controller(HomeController.controllerName, HomeController);
 }
-
-
-

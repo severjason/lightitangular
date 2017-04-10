@@ -1,13 +1,13 @@
-<div data-ng-show="signUp.success.status" class="success_alert">
-    <h4 data-ng-cloak class="text-center">
+<div data-ng-show="signUp.success.status" class="success-alert">
+    <div data-ng-cloak class="text-center">
         <p>User <span class="bold">{{signUp.success.username}}</span> was successfully registered!</p>
         <br/>
         <p>You will be automatically redirected to login page within 3 seconds.</p>
-    </h4>
+    </div>
 </div>
 <div data-ng-show="!signUp.success.status">
     <h4 class="text-center">Fill this form to sign up:</h4>
-    <div id="sign_up_form" class="app_forms">
+    <div id="sign_up_form" class="app-forms">
         <form name="sign_up_form" novalidate>
             <div class="form-group" data-ng-class="{ 'has-error': (sign_up_form.$submitted || sign_up_form.username.$touched) && sign_up_form.username.$error.required }">
                 <label for="sigh_up_username" class="control-label">Username</label>
@@ -35,7 +35,7 @@
                     <button data-ng-disabled="sign_up_form.$invalid" type="submit" class="btn btn-default" id="sign_up_button" data-ng-click="signUp.submit(newUser)">Send</button>
                 </div>
                 <div data-ng-show="signUp.error.status">
-                    <div class="api_warning" >{{signUp.error.message}}</div>
+                    <div class="api-warning" data-ng-cloak>{{signUp.error.message}}</div>
                 </div>
             </div>
         </form>

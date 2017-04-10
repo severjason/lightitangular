@@ -1,11 +1,11 @@
 header {
-  min-height: $header_height;
+  min-height: $header-height;
   margin: 0 auto;
-  padding: $header_padding;
-  border-bottom: $test_border;
+  padding: $header-padding;
+  border-bottom: $test-border;
 
   .header_text {
     float: left;
-    line-height: $header_height - 2 * $header_padding;
+    line-height: $header-height - 2 * $header-padding;
   }
 }

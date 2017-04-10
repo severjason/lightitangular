@@ -1,41 +1,43 @@
-$app_max_width: 960px;
-$border_radius:1px;
-$test_border:$border_radius solid #efefef;
+$app-max-width: 960px;
+$border-radius:1px;
+$test-border-color: #efefef;
+$test-border: $border-radius solid $test-border-color;
 
 
 //loader
-$loader_width:100px;
-$loader_height:$loader_width;
-$loader_padding:50px;
+$loader-width:100px;
+$loader-height: $loader-width;
+$loader-padding:50px;
 
 //header
-$header_height:40px;
-$header_padding:10px;
+$header-height:40px;
+$header-padding:10px;
 
 //nav
-$nav_height:60px;
-$nav_padding:10px;
-$nav_buttons_width:80px;
+$nav-height:60px;
+$nav-padding:10px;
+$nav-buttons-width:80px;
 
 //section
-$section_min_height:200px;
-$section_padding:10px;
-$section_margin:20px;
+$section-min-height:200px;
+$section-padding:10px;
+$section-margin:20px;
 
 //product
-$product_width: 300px;
-$product_height: $product_width;
-$product_margin: 5px;
-$product_description_padding: 5px;
-$product_title_height:50px;
+$product-width: 300px;
+$product-height: $product-width;
+$product-margin: 5px;
+$product-description-padding: 5px;
+$product-title-height:50px;
+$product-hover-color: #efefef;
 
 //comments
-$comment_height:40px;
-$comment_margin:10px;
-$comment_padding_top:10px;
-$max_comments_width:600px;
-$rate_height:40px;
-$rate_width:60px;
+$comment-height:40px;
+$comment-margin:10px;
+$comment-padding-top:10px;
+$max-comments-width:600px;
+$rate-height:40px;
+$rate-width:60px;
 
 
 //colors
@@ -43,15 +45,15 @@ $alert:#c0392b;
 $success:#27ae60;
 
 //buttons
-$buttons_width: 100px;
-$buttons_height: 40px;
+$buttons-width: 100px;
+$buttons-height: 40px;
 
 //forms
-$forms_margin:10px;
-$forms_width:400px;
-$forms_alert_color:$alert;
+$forms-margin:10px;
+$forms-width:400px;
+$forms-alert-color:$alert;
 
 // warning
-$warning_font_size:14px;
-$warning_width:300px;
-$warning_height:$buttons_height;
+$warning-font-size:14px;
+$warning-width:300px;
+$warning-height: $buttons-height;

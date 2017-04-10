@@ -1,13 +1,16 @@
-nav#navigation {
-  min-height: $nav_height;
-  margin: 0 auto 20px;
-  //border: $test_border;
-  border-radius: 1px;
+@import '../variables';
 
-  .nav_buttons {
+nav {
+  border-radius: 1px;
+  margin: 0 auto 20px;
+  min-height: $nav-height;
+  //border: $test_border;
+
+  .nav-buttons {
     float: left;
   }
-  .auth_buttons {
+
+  .auth-buttons {
     float: right;
   }
 

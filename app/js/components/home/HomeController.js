@@ -13,7 +13,7 @@ var lightItApp;
             }, (error) => {
                 $scope.error = {
                     status: true,
-                    message: "Unable to get all products: " + error.message
+                    message: "Unable to get all products: " + error.message,
                 };
             });
         }
