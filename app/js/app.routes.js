@@ -12,6 +12,10 @@ var lightItApp;
                 templateUrl: "js/components/login/_loginView.html",
                 controller: "LoginController",
             })
+                .when("/logout", {
+                templateUrl: "js/components/login/_loginView.html",
+                controller: "LogoutController",
+            })
                 .when("/signup", {
                 templateUrl: "js/components/signup/_signUpView.html",
                 controller: "SignUpController",

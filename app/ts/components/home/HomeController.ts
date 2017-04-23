@@ -7,10 +7,15 @@ namespace lightItApp {
         public static controllerName: string = "HomeController";
 
         constructor(private $scope: ng.IScope, private apiService: IApi, private userService: ICookie) {
+
+            console.log(userService.rememberUser());
+            if (userService.rememberUser() && userService.getUserName()) {
+                userService.setRootUserInfo(userService.getUserName(), true);
+            }
+
             apiService.getProducts()
                 .then((response: any): void => {
                     $scope.products = response.data;
-                    console.log(userService.getToken());
                 }, (error: Error): void => {
                     $scope.error = {
                         status: true,
@@ -21,6 +26,6 @@ namespace lightItApp {
     }
 
     angular
-        .module("appHome", ["appCookie"])
+        .module("appHome", ["appCookie", "appAPI"])
         .controller(HomeController.controllerName, HomeController);
 }

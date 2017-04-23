@@ -16,8 +16,8 @@ var lightItApp;
                 },
                 reset: () => {
                     $scope.newUser = {};
-                    $scope.sign_up_form.$setPristine();
-                    $scope.sign_up_form.$setUntouched();
+                    $scope.signUpForm.$setPristine();
+                    $scope.signUpForm.$setUntouched();
                 },
                 submit: (newUser) => {
                     $scope.signUp.clearErrors();
@@ -58,6 +58,6 @@ var lightItApp;
     SignUpController.$inject = ["$scope", "$timeout", "$location", "apiService", "userService"];
     SignUpController.controllerName = "SignUpController";
     angular
-        .module("appSignUp", ["appCookie"])
+        .module("appSignUp", ["appCookie", "appAPI"])
         .controller(SignUpController.controllerName, SignUpController);
 })(lightItApp || (lightItApp = {}));

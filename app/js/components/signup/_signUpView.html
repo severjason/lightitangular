@@ -7,37 +7,42 @@
 </div>
 <div data-ng-show="!signUp.success.status">
     <h4 class="text-center">Fill this form to sign up:</h4>
-    <div id="sign_up_form" class="app-forms">
-        <form name="sign_up_form" novalidate>
-            <div class="form-group" data-ng-class="{ 'has-error': (sign_up_form.$submitted || sign_up_form.username.$touched) && sign_up_form.username.$error.required }">
-                <label for="sigh_up_username" class="control-label">Username</label>
-                <input type="text" class="form-control" id="sigh_up_username" name="username" placeholder="Your username" data-ng-model="newUser.name" required>
-                <div data-ng-show="sign_up_form.$submitted || sign_up_form.username.$touched">
-                    <div class="warning" data-ng-show="sign_up_form.username.$error.required" >Username is required!</div>
+    <div class="app-forms">
+        <form name="signUpForm" novalidate>
+
+            <div class="form-group" data-ng-class="{ 'has-error': (signUpForm.$submitted || signUpForm.username.$touched) && signUpForm.username.$error.required }">
+                <label for="sighUpUsername" class="control-label">Username</label>
+                <input type="text" class="form-control" id="sighUpUsername" name="username" placeholder="Your username" data-ng-model="newUser.name" required>
+                <div data-ng-show="signUpForm.$submitted || signUpForm.username.$touched">
+                    <div class="warning" data-ng-show="signUpForm.username.$error.required" >Username is required!</div>
                 </div>
             </div>
-            <div class="form-group" data-ng-class="{ 'has-error': (sign_up_form.$submitted || sign_up_form.password.$touched) && sign_up_form.password.$error.required }">
-                <label for="sigh_up_password" class="control-label">Password</label>
-                <input type="password" class="form-control" id="sigh_up_password" name="password" placeholder="Your password" data-ng-model="newUser.password" required>
-                <div data-ng-show="sign_up_form.$submitted || sign_up_form.password.$touched">
-                    <div class="warning" data-ng-show="sign_up_form.password.$error.required" >Password is required!</div>
+
+            <div class="form-group" data-ng-class="{ 'has-error': (signUpForm.$submitted || signUpForm.password.$touched) && signUpForm.password.$error.required }">
+                <label for="sighUpPassword" class="control-label">Password</label>
+                <input type="password" class="form-control" id="sighUpPassword" name="password" placeholder="Your password" data-ng-model="newUser.password" required>
+                <div data-ng-show="signUpForm.$submitted || signUpForm.password.$touched">
+                    <div class="warning" data-ng-show="signUpForm.password.$error.required" >Password is required!</div>
                 </div>
             </div>
-            <div class="form-group" data-ng-class="{ 'has-error': (sign_up_form.$submitted || sign_up_form.passwordConfirm.$touched) && sign_up_form.passwordConfirm.$error.errorCompareTo }">
-                <label for="sigh_up_password_confirm" class="control-label" >Confirm password</label>
-                <input type="password" class="form-control" id="sigh_up_password_confirm" name="passwordConfirm" placeholder="Confirm your password" data-ng-model="newUser.passwordConfirm" data-compare-to="newUser.password" >
-                <div data-ng-show="sign_up_form.$submitted || sign_up_form.passwordConfirm.$touched">
-                    <div class="warning" data-ng-show="sign_up_form.passwordConfirm.$error.errorCompareTo" >Passwords don`t match!</div>
+
+            <div class="form-group" data-ng-class="{ 'has-error': (signUpForm.$submitted || signUpForm.passwordConfirm.$touched) && signUpForm.passwordConfirm.$error.errorCompareTo }">
+                <label for="sighUpPasswordConfirm" class="control-label" >Confirm password</label>
+                <input type="password" class="form-control" id="sighUpPasswordConfirm" name="passwordConfirm" placeholder="Confirm your password" data-ng-model="newUser.passwordConfirm" data-compare-to="newUser.password" >
+                <div data-ng-show="signUpForm.$submitted || signUpForm.passwordConfirm.$touched">
+                    <div class="warning" data-ng-show="signUpForm.passwordConfirm.$error.errorCompareTo" >Passwords don`t match!</div>
                 </div>
             </div>
+
             <div class="form-group">
                 <div class="text-center">
-                    <button data-ng-disabled="sign_up_form.$invalid" type="submit" class="btn btn-default" id="sign_up_button" data-ng-click="signUp.submit(newUser)">Send</button>
+                    <button data-ng-disabled="signUpForm.$invalid" type="submit" class="btn btn-default" data-ng-click="signUp.submit(newUser)">Send</button>
                 </div>
                 <div data-ng-show="signUp.error.status">
                     <div class="api-warning" data-ng-cloak>{{signUp.error.message}}</div>
                 </div>
             </div>
+
         </form>
     </div>
 </div>

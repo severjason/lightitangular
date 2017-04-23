@@ -12,9 +12,21 @@ nav {
 
   .auth-buttons {
     float: right;
-  }
 
-  #logout {
-    display: none;
+    .user-name {
+      float: left;
+      line-height: $buttons-height;
+      margin-top: $nav-padding;
+      padding-right: $nav-padding;
+    }
+  }
+}
+
+#logout {
+  display: none;
+  float: left;
+
+  &.user-logged-in {
+    display: block;
   }
 }

@@ -5,9 +5,12 @@ html {
   font-size: 62.5%;
 }
 
-*,*:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
+
 body {
   font-size: 1.8rem;
 }
@@ -17,13 +20,16 @@ img {
   max-width: 100%;
 }
 
-a:hover,a:focus {
+a:hover,
+a:focus {
   text-decoration: none;
 }
 
-button:focus, button.btn.btn-default:focus {
+button:focus,
+button.btn.btn-default:focus {
   outline: none;
 }
+
 .clear {
   clear: both;
 }
@@ -44,11 +50,15 @@ button:focus, button.btn.btn-default:focus {
     background: transparent;
   }
 }
+
 .bold {
   font-weight: bold;
 }
 
-button, button.btn, a, a.btn {
+button,
+button.btn,
+a,
+a.btn {
   border-radius: $border-radius;
   line-height: $buttons-height;
   margin-top: $nav-padding;
@@ -65,4 +75,13 @@ input.form-control {
 
 .no-margin {
   margin: 0;
+}
+
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
 }

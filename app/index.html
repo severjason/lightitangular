@@ -30,7 +30,7 @@
 <body data-ng-app="lightItApp" >
 
 <header role="banner" class="max-width">
-    <div class="header_text left bold">
+    <div class="header-text left bold">
         Light It test using Angular 1
     </div>
 
@@ -43,13 +43,18 @@
         </a>
     </div>
     <div class="auth-buttons right">
-        <a class="btn btn-default" id="sign_up" data-ng-href="/signup">
+        <div class="user-name" data-ng-cloak>
+            <span class="bold">
+               {{userInfo.name}}
+            </span>
+        </div>
+        <a class="btn btn-default" data-ng-class="{'hidden': userInfo.loggedIn}" id="sign_up" data-ng-href="/signup">
             Sigh Up
         </a>
-        <a class="btn btn-default" id="login" data-ng-href="/login">
+        <a class="btn btn-default" data-ng-class="{'hidden': userInfo.loggedIn}" id="login" data-ng-href="/login">
             Login
         </a>
-        <a class="btn btn-default" id="logout">
+        <a class="btn btn-default" data-ng-class="{'user-logged-in': userInfo.loggedIn}" id="logout" data-ng-href="/logout">
             Logout
         </a>
     </div>
@@ -83,6 +88,7 @@
 <script defer src="js/components/home/HomeController.js"></script>
 <script defer src="js/components/signup/SignUpController.js"></script>
 <script defer src="js/components/login/LoginController.js"></script>
+<script defer src="js/components/logout/LogoutController.js"></script>
 <script defer src="js/components/signup/compareToDirective.js"></script>
 
 <!-- endbuild -->

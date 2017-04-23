@@ -6,10 +6,13 @@ var lightItApp;
             this.$scope = $scope;
             this.apiService = apiService;
             this.userService = userService;
+            console.log(userService.rememberUser());
+            if (userService.rememberUser() && userService.getUserName()) {
+                userService.setRootUserInfo(userService.getUserName(), true);
+            }
             apiService.getProducts()
                 .then((response) => {
                 $scope.products = response.data;
-                console.log(userService.getToken());
             }, (error) => {
                 $scope.error = {
                     status: true,
@@ -21,6 +24,6 @@ var lightItApp;
     HomeController.$inject = ["$scope", "apiService", "userService"];
     HomeController.controllerName = "HomeController";
     angular
-        .module("appHome", ["appCookie"])
+        .module("appHome", ["appCookie", "appAPI"])
         .controller(HomeController.controllerName, HomeController);
 })(lightItApp || (lightItApp = {}));

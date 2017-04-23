@@ -1,18 +1,40 @@
 <h4 class="text-center">Please enter you login and password:</h4>
 <div id="login_form" class="app-forms">
-    <form class="">
-        <div class="form-group">
-            <label for="login_username" class="control-label">Username</label>
-            <input type="text" class="form-control" id="login_username" name="username" placeholder="Your username" data-ng-model="user.name">
+    <form name="loginForm">
+
+        <div class="form-group"
+             data-ng-class="{ 'has-error': (loginForm.$submitted || loginForm.username.$touched) && loginForm.username.$error.required }">
+            <label for="loginUsername" class="control-label">Username</label>
+            <input type="text" class="form-control" id="loginUsername" name="username" placeholder="Your username"
+                   data-ng-model="user.name" required>
+            <div data-ng-show="loginForm.$submitted || loginForm.username.$touched">
+                <div class="warning" data-ng-show="loginForm.username.$error.required">Username is required!</div>
+            </div>
         </div>
-        <div class="form-group no-margin">
-            <label for="login_password" class="control-label">Password</label>
-            <input type="password" class="form-control" id="login_password" name="password" placeholder="Your password" data-ng-model="user.password">
+
+        <div class="form-group no-margin"
+             data-ng-class="{ 'has-error': (loginForm.$submitted || loginForm.password.$touched) && loginForm.password.$error.required }">
+            <label for="loginPassword" class="control-label">Password</label>
+            <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Your password"
+                   data-ng-model="user.password" required>
+            <div data-ng-show="loginForm.$submitted || loginForm.password.$touched">
+                <div class="warning" data-ng-show="loginForm.password.$error.required">Password is required!</div>
+            </div>
+        </div>
+        <div class="form-group checkbox">
+            <label>
+                <input type="checkbox" data-ng-model="user.rememberMe"> Remember me
+            </label>
         </div>
         <div class="form-group text-center">
-            <div class="warning"></div>
-            <button type="submit" class="btn btn-default" id="login_button"  data-ng-click="submit(user)">Ok</button>
+            <button data-ng-disabled="loginForm.$invalid" type="submit" class="btn btn-default"
+                    data-ng-click="login.submit(user)">Ok
+            </button>
+            <div data-ng-show="login.error.status">
+                <div class="api-warning" data-ng-cloak>{{login.error.message}}</div>
+            </div>
             <div class="clear"></div>
         </div>
+
     </form>
 </div>

@@ -1,10 +1,12 @@
-header {
-  min-height: $header-height;
-  margin: 0 auto;
-  padding: $header-padding;
-  border-bottom: $test-border;
+@import '../variables';
 
-  .header_text {
+header {
+  border-bottom: $test-border;
+  margin: 0 auto;
+  min-height: $header-height;
+  padding: $header-padding;
+
+  .header-text {
     float: left;
     line-height: $header-height - 2 * $header-padding;
   }

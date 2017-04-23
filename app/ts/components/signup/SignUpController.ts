@@ -19,8 +19,8 @@ namespace lightItApp {
                 },
                 reset: (): void => {
                     $scope.newUser = {};
-                    $scope.sign_up_form.$setPristine();
-                    $scope.sign_up_form.$setUntouched();
+                    $scope.signUpForm.$setPristine();
+                    $scope.signUpForm.$setUntouched();
                 },
                 submit: (newUser: any): void => {
                     $scope.signUp.clearErrors();
@@ -59,6 +59,6 @@ namespace lightItApp {
         }
     }
     angular
-        .module("appSignUp", ["appCookie"])
+        .module("appSignUp", ["appCookie", "appAPI"])
         .controller(SignUpController.controllerName, SignUpController);
 }

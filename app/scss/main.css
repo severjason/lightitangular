@@ -2,7 +2,9 @@ html {
   box-sizing: border-box;
   font-size: 62.5%; }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit; }
 
 body {
@@ -12,10 +14,12 @@ img {
   display: block;
   max-width: 100%; }
 
-a:hover, a:focus {
+a:hover,
+a:focus {
   text-decoration: none; }
 
-button:focus, button.btn.btn-default:focus {
+button:focus,
+button.btn.btn-default:focus {
   outline: none; }
 
 .clear {
@@ -37,7 +41,10 @@ button:focus, button.btn.btn-default:focus {
 .bold {
   font-weight: bold; }
 
-button, button.btn, a, a.btn {
+button,
+button.btn,
+a,
+a.btn {
   border-radius: 1px;
   line-height: 40px;
   margin-top: 10px;
@@ -52,12 +59,20 @@ input.form-control {
 .no-margin {
   margin: 0; }
 
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important; }
+
 header {
-  min-height: 40px;
+  border-bottom: 1px solid #efefef;
   margin: 0 auto;
-  padding: 10px;
-  border-bottom: 1px solid #efefef; }
-  header .header_text {
+  min-height: 40px;
+  padding: 10px; }
+  header .header-text {
     float: left;
     line-height: 20px; }
 
@@ -210,7 +225,16 @@ nav {
     float: left; }
   nav .auth-buttons {
     float: right; }
-  nav #logout {
-    display: none; }
+    nav .auth-buttons .user-name {
+      float: left;
+      line-height: 40px;
+      margin-top: 10px;
+      padding-right: 10px; }
+
+#logout {
+  display: none;
+  float: left; }
+  #logout.user-logged-in {
+    display: block; }
 
 /*# sourceMappingURL=main.css.map */
