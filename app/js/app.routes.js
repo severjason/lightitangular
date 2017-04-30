@@ -20,6 +20,20 @@ var lightItApp;
                 templateUrl: "js/components/signup/_signUpView.html",
                 controller: "SignUpController",
             })
+                .when("/product/:id", {
+                templateUrl: "js/components/product/_productView.html",
+                controller: "ProductController",
+                resolve: {
+                    allProductsData: ["apiService", (apiService) => {
+                            return apiService.getProducts()
+                                .then((response) => {
+                                return response.data;
+                            }, (error) => {
+                                return false;
+                            });
+                        }]
+                }
+            })
                 .otherwise({ redirectTo: "/" });
         }
     }

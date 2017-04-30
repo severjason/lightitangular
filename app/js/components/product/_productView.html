@@ -1,0 +1,36 @@
+<div class="product-details">
+    <div class="title">
+        <h3 class="text-center" data-ng-cloak>{{product.title}}</h3>
+        <img src="images/{{product.img}}" alt="">
+    </div>
+    <div class="description">
+        <h4 class="text-center">Technical specifications</h4>
+        <div class="text-left">
+            {{product.text}}
+        </div>
+    </div>
+    <div class="reviews-wrapper">
+        <div id="post-review-container">
+
+        </div>
+        <div class="reviews-container" data-ng-show="reviews">
+            <p class="reviews-text">Reviews:</p>
+            <div class="review list-group-item" data-ng-repeat="review in reviews | orderBy:'review.created_at':true">
+                <div class="comments-header">
+                    <div class="left" data-ng-cloak>
+                        <span class="bold">{{review.created_by.username}}</span> at
+                        {{review.created_at | date:'h:mm, MMM d y '}}
+                    </div>
+                    <div class="right" data-ng-cloak>
+                        Rate: {{review.rate}}
+                    </div>
+                </div>
+                <div class="text">
+                    {{review.text}}
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

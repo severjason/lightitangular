@@ -5,6 +5,7 @@ namespace lightItApp {
 
     export interface IApi extends ng.IDirective {
         getProducts(): any;
+        getProductReview(productId: string): any;
         signUp(name: string, password: string): any;
         login(name: string, password: string): any;
     }
@@ -16,6 +17,7 @@ namespace lightItApp {
 
         private apiUrlStr: string;
         private productsUrlStr: string;
+        private productReviewUrlStr: string;
         private signUpUrlStr: string;
         private loginUrlStr: string;
         private httpService: ng.IHttpService;
@@ -25,6 +27,7 @@ namespace lightItApp {
         constructor($http: ng.IHttpService, _: UnderscoreStatic, userService: ICookie) {
             this.apiUrlStr = "http://smktesting.herokuapp.com/";
             this.productsUrlStr = "api/products/";
+            this.productReviewUrlStr = "api/reviews/";
             this.signUpUrlStr = "api/register/";
             this.loginUrlStr = "api/login/";
             this.httpService = $http;
@@ -62,6 +65,10 @@ namespace lightItApp {
 
         public getProducts(): any {
             return this.http.get(this.apiUrl + this.productsUrl);
+        }
+
+        public getProductReview(productId: string): any {
+            return this.http.get(this.apiUrl + this.productReviewUrlStr + `${productId}`);
         }
 
         public signUp(signUpName: string, signUpPassword: string): any {

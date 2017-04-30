@@ -8,7 +8,6 @@ namespace lightItApp {
 
         constructor(private $scope: ng.IScope, private apiService: IApi, private userService: ICookie) {
 
-            console.log(userService.rememberUser());
             if (userService.rememberUser() && userService.getUserName()) {
                 userService.setRootUserInfo(userService.getUserName(), true);
             }

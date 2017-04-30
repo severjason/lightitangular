@@ -23,6 +23,20 @@ namespace lightItApp {
                     templateUrl: "js/components/signup/_signUpView.html",
                     controller: "SignUpController",
                 })
+                .when("/product/:id", {
+                    templateUrl: "js/components/product/_productView.html",
+                    controller: "ProductController",
+                    resolve: {
+                        allProductsData: ["apiService", (apiService: IApi) => {
+                            return apiService.getProducts()
+                                .then((response: any): any => {
+                                    return response.data;
+                                }, (error: Error): any => {
+                                    return false;
+                                });
+                        }]
+                    }
+                })
                 .otherwise({redirectTo: "/"});
         }
     }

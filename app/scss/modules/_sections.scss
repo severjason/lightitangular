@@ -17,6 +17,7 @@
 
   .product {
     border: $test-border;
+    color: inherit;
     cursor: pointer;
     height: $product-height;
     margin: $product-margin;
@@ -48,11 +49,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  //border-top: $test_border;
 
   .title {
     width: 50%;
-    //border-right: $test_border;
 
     img {
       margin: 0 auto;
@@ -64,10 +63,14 @@
     width: 50%;
   } //.description
 
-  .comments {
+  .reviews-container {
+    margin: 0 auto;
+    max-width: $max-comments-width;
+  } //.reviews-container
+
+  .review {
+    margin-top: $comment-margin;
     width: 100%;
-    //border-top: $test_border;
-    //margin-top: $comment_margin;
 
     .list-group-item {
       border-radius: $border-radius;
@@ -75,42 +78,41 @@
       max-width: $max-comments-width;
     }
 
-    .comments_header{
-      border-bottom: $test-border;
+    .text {
+      margin: 0;
       padding: $comment-margin / 2;
-
-      div {
-        height: $comment-height;
-        line-height: $comment-height;
-
-        &.left {
-          float: left;
-        }
-        &.right {
-          float: right;
-        }
-      }
-
-
-      &:after {
-        clear: both;
-        content: '';
-        display: block;
-        visibility: hidden;
-      }
-
-    } //.comments_header
-    .comment {
       word-wrap: break-word;
-
-      p {
-        margin: 0;
-        padding-top: $comment-padding-top;
-      }
     }
-  }//#comments
 
-  #post_review_container {
+  }//.review
+
+  .comments-header {
+    border-bottom: $test-border;
+    font-style: italic;
+    padding: $comment-margin / 2;
+
+    .left {
+      float: left;
+      height: $comment-height;
+      line-height: $comment-height;
+    }
+
+    .right {
+      float: right;
+      height: $comment-height;
+      line-height: $comment-height;
+    }
+
+    &::after {
+      clear: both;
+      content: '';
+      display: block;
+      visibility: hidden;
+    }
+
+  } //.comments-header
+
+  #post-review-container {
     border-bottom: $test-border;
     border-top: $test-border;
     margin: $comment-margin auto;
@@ -126,7 +128,7 @@
       margin: 0;
     }
 
-    #post_review_warning {
+    #post-review-warning {
       color: $alert;
       display: none;
       float: left;
@@ -136,7 +138,7 @@
       margin-left: $comment-margin;
     }
 
-    #post_review_rate {
+    #post-review-rate {
       border-radius: $border-radius;
       display: block;
       float: left;
@@ -152,17 +154,17 @@
     }
   }
 
-  .comments_text {
+  .reviews-text {
     font-weight: bold;
     text-align: center;
     width: 100%;
   }
 
-  #comments_wrapper {
+  .reviews-wrapper {
     width: 100%;
   }
 
-}//#product_details
+}//.product-details
 
 .app-forms {
   margin: $forms-margin auto 0;
@@ -201,7 +203,6 @@
 }
 
 .loader {
-  display: none;
   left: 50%;
   margin-left: - $loader-height / 2;
   margin-top: $loader-padding;

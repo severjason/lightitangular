@@ -5,6 +5,7 @@ var lightItApp;
         constructor($http, _, userService) {
             this.apiUrlStr = "http://smktesting.herokuapp.com/";
             this.productsUrlStr = "api/products/";
+            this.productReviewUrlStr = "api/reviews/";
             this.signUpUrlStr = "api/register/";
             this.loginUrlStr = "api/login/";
             this.httpService = $http;
@@ -34,6 +35,9 @@ var lightItApp;
         }
         getProducts() {
             return this.http.get(this.apiUrl + this.productsUrl);
+        }
+        getProductReview(productId) {
+            return this.http.get(this.apiUrl + this.productReviewUrlStr + `${productId}`);
         }
         signUp(signUpName, signUpPassword) {
             return this.http.post(this.apiUrl + this.signUpUrl, {
