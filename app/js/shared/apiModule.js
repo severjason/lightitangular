@@ -26,6 +26,9 @@ var lightItApp;
         get productsUrl() {
             return this.productsUrlStr;
         }
+        get productReviewUrl() {
+            return this.productReviewUrlStr;
+        }
         get signUpUrl() {
             return this.signUpUrlStr;
         }
@@ -42,7 +45,7 @@ var lightItApp;
             return this.http.get(this.apiUrl + this.productsUrl + "/");
         }
         getProductReview(productId) {
-            return this.http.get(this.apiUrl + this.productReviewUrlStr + `/${productId}`);
+            return this.http.get(this.apiUrl + this.productReviewUrl + `/${productId}`);
         }
         signUp(signUpName, signUpPassword) {
             return this.http.post(this.apiUrl + this.registerUrl + "/", {
@@ -55,6 +58,13 @@ var lightItApp;
                 headers: { "x-access-token": this.userService.getToken() },
                 username: this._.escape(loginName),
                 password: loginPassword,
+            });
+        }
+        postReview(productId, review) {
+            return this.http.post(this.apiUrl + this.productReviewUrl + `/${productId}`, {
+                headers: { "x-access-token": this.userService.getToken() },
+                rate: review.rate,
+                text: this._.escape(review.text),
             });
         }
     }

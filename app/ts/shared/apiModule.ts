@@ -8,6 +8,7 @@ namespace lightItApp {
         signUpUrl: string;
         getProducts(): any;
         getProductReview(productId: string): any;
+        postReview(productId: string, review: any): any;
         signUp(name: string, password: string): any;
         login(name: string, password: string): any;
     }
@@ -56,6 +57,10 @@ namespace lightItApp {
             return this.productsUrlStr;
         }
 
+        get productReviewUrl(): string {
+            return this.productReviewUrlStr;
+        }
+
         get signUpUrl(): string {
             return this.signUpUrlStr;
         }
@@ -77,7 +82,7 @@ namespace lightItApp {
         }
 
         public getProductReview(productId: string): any {
-            return this.http.get(this.apiUrl + this.productReviewUrlStr + `/${productId}`);
+            return this.http.get(this.apiUrl + this.productReviewUrl + `/${productId}`);
         }
 
         public signUp(signUpName: string, signUpPassword: string): any {
@@ -92,6 +97,14 @@ namespace lightItApp {
                 headers: {"x-access-token": this.userService.getToken()},
                 username: this._.escape(loginName),
                 password: loginPassword,
+            });
+        }
+
+        public postReview(productId: string, review: any): any {
+            return this.http.post(this.apiUrl + this.productReviewUrl + `/${productId}`, {
+                headers: {"x-access-token": this.userService.getToken()},
+                rate: review.rate,
+                text: this._.escape(review.text),
             });
         }
     }

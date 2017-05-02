@@ -45,7 +45,6 @@ var lightItApp;
         $rootScope.$on("$routeChangeStart", (event, next, current) => {
             if (next !== undefined) {
                 if (userService.getUserName() && userService.getToken()) {
-                    console.log(userService.getUserName());
                     userService.setRootUserInfo(userService.getUserName(), true);
                 }
                 if (userService.userLoggedIn() &&

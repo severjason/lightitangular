@@ -1,4 +1,7 @@
-<div class="product-details">
+<div class="error" data-ng-show="!!error.status">
+    <h4 class="text-center">{{error.message}}</h4>
+</div>
+<div class="product-details" data-ng-show="!error.status">
     <div class="title">
         <h3 class="text-center" data-ng-cloak>{{product.title}}</h3>
         <img src="images/{{product.img}}" alt="">
@@ -16,14 +19,14 @@
                     Rate:
                 </div>
                 <label>
-                    <input data-ng-model="review.rate" name="rate" type="radio" value="1">
-                    <input data-ng-model="review.rate" name="rate" type="radio" value="2">
-                    <input data-ng-model="review.rate" name="rate" type="radio" value="3">
-                    <input data-ng-model="review.rate" name="rate" type="radio" value="4">
-                    <input data-ng-model="review.rate" name="rate" type="radio" value="5" data-ng-checked="true">
+                    <input data-ng-model="review.rate" name="rate" type="radio" data-ng-value="1" required>
+                    <input data-ng-model="review.rate" name="rate" type="radio" data-ng-value="2" required>
+                    <input data-ng-model="review.rate" name="rate" type="radio" data-ng-value="3" required>
+                    <input data-ng-model="review.rate" name="rate" type="radio" data-ng-value="4" required>
+                    <input data-ng-model="review.rate" name="rate" type="radio" data-ng-value="5" required>
                 </label>
-                <div class="post-review-rate text-center">
-                    {{review.rate || 5}}
+                <div class="post-review-rate text-center" data-ng-cloak>
+                    {{review.rate}}
                 </div>
                 <div class="post-review-warning">
                     Comment is empty!
@@ -37,9 +40,14 @@
                           data-ng-model="review.text"
                           required
                 ></textarea>
-                <button class="btn btn-default" data-ng-disabled="reviewForm.$invalid" type="submit">
+                <button class="btn btn-default review-button" data-ng-disabled="reviewForm.$invalid" type="submit"
+                        data-ng-click="newReview.submit(review)">
                     Send
                 </button>
+                <div class="review-warning" data-ng-show="newReview.error.status">
+                    <div  data-ng-cloak>{{newReview.error.message}}</div>
+                </div>
+                <div class="clear"></div>
             </form>
 
         </div>
@@ -55,7 +63,7 @@
                         Rate: {{review.rate}}
                     </div>
                 </div>
-                <div class="text">
+                <div class="text" data-ng-cloak>
                     {{review.text}}
                 </div>
 
