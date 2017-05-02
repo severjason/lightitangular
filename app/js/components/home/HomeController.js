@@ -6,9 +6,6 @@ var lightItApp;
             this.$scope = $scope;
             this.apiService = apiService;
             this.userService = userService;
-            if (userService.rememberUser() && userService.getUserName()) {
-                userService.setRootUserInfo(userService.getUserName(), true);
-            }
             apiService.getProducts()
                 .then((response) => {
                 $scope.products = response.data;

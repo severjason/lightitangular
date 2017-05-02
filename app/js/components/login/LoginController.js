@@ -2,8 +2,9 @@ var lightItApp;
 (function (lightItApp) {
     "use strict";
     class LoginController {
-        constructor($scope, $timeout, $location, apiService, userService) {
+        constructor($scope, $window, $timeout, $location, apiService, userService) {
             this.$scope = $scope;
+            this.$window = $window;
             this.$timeout = $timeout;
             this.$location = $location;
             this.apiService = apiService;
@@ -22,8 +23,8 @@ var lightItApp;
                     apiService.login(user.name, user.password)
                         .then((response) => {
                         if (response.data.success) {
-                            userService.save(user.name, response.data.token, user.rememberMe);
-                            $location.path("/");
+                            userService.save(user.name, response.data.token);
+                            $window.history.back();
                         }
                         else {
                             $scope.login.error = {
@@ -48,7 +49,8 @@ var lightItApp;
             };
         }
     }
-    LoginController.$inject = ["$scope", "$timeout", "$location", "apiService", "userService"];
+    LoginController.$inject = ["$scope", "$window", "$timeout", "$location",
+        "apiService", "userService"];
     LoginController.controllerName = "LoginController";
     angular
         .module("appLogin", ["appCookie", "appAPI"])

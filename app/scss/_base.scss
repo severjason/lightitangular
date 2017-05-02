@@ -73,6 +73,11 @@ input.form-control {
   height: $buttons-height;
 }
 
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+  outline: none;
+}
+
 .no-margin {
   margin: 0;
 }

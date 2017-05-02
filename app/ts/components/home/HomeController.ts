@@ -6,11 +6,9 @@ namespace lightItApp {
         public static $inject: string[] = ["$scope", "apiService", "userService"];
         public static controllerName: string = "HomeController";
 
-        constructor(private $scope: ng.IScope, private apiService: IApi, private userService: ICookie) {
-
-            if (userService.rememberUser() && userService.getUserName()) {
-                userService.setRootUserInfo(userService.getUserName(), true);
-            }
+        constructor(private $scope: ng.IScope,
+                    private apiService: IApi,
+                    private userService: ICookie) {
 
             apiService.getProducts()
                 .then((response: any): void => {

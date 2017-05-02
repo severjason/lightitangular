@@ -10,7 +10,37 @@
         </div>
     </div>
     <div class="reviews-wrapper">
-        <div id="post-review-container">
+        <div class="post-review-container">
+            <form name="reviewForm">
+                <div class="post-review-rate">
+                    Rate:
+                </div>
+                <label>
+                    <input data-ng-model="review.rate" name="rate" type="radio" value="1">
+                    <input data-ng-model="review.rate" name="rate" type="radio" value="2">
+                    <input data-ng-model="review.rate" name="rate" type="radio" value="3">
+                    <input data-ng-model="review.rate" name="rate" type="radio" value="4">
+                    <input data-ng-model="review.rate" name="rate" type="radio" value="5" data-ng-checked="true">
+                </label>
+                <div class="post-review-rate text-center">
+                    {{review.rate || 5}}
+                </div>
+                <div class="post-review-warning">
+                    Comment is empty!
+                </div>
+                <div class="clear"></div>
+                <label for="post-review-text"></label>
+                <textarea name="reviewText"
+                          class="form-control"
+                          rows="3" id="post-review-text"
+                          placeholder="Your review..."
+                          data-ng-model="review.text"
+                          required
+                ></textarea>
+                <button class="btn btn-default" data-ng-disabled="reviewForm.$invalid" type="submit">
+                    Send
+                </button>
+            </form>
 
         </div>
         <div class="reviews-container" data-ng-show="reviews">

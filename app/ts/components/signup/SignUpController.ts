@@ -11,6 +11,7 @@ namespace lightItApp {
                     private $location: ng.ILocationService,
                     private apiService: IApi,
                     private userService: ICookie) {
+
             $scope.signUp = {
                 clearErrors: (): void => {
                     $scope.signUp.error = {
@@ -23,7 +24,6 @@ namespace lightItApp {
                     $scope.signUpForm.$setUntouched();
                 },
                 submit: (newUser: any): void => {
-                    $scope.signUp.clearErrors();
                     apiService.signUp(newUser.name, newUser.password)
                         .then((response: any) => {
                             if (response.data.success) {
@@ -35,6 +35,7 @@ namespace lightItApp {
                                     username: newUser.name,
                                 };
                             } else {
+                                $scope.signUp.clearErrors();
                                 $scope.signUp.error = {
                                     status: true,
                                     message: response.data.message,

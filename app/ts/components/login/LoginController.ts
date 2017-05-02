@@ -3,14 +3,17 @@ namespace lightItApp {
 
     class LoginController {
 
-        public static $inject: string[] = ["$scope", "$timeout", "$location", "apiService", "userService"];
+        public static $inject: string[] = ["$scope", "$window", "$timeout", "$location",
+            "apiService", "userService"];
         public static controllerName: string = "LoginController";
 
         constructor(private $scope: ng.IScope,
+                    private $window: ng.IWindowService,
                     private $timeout: ng.ITimeoutService,
                     private $location: ng.ILocationService,
                     private apiService: IApi,
                     private userService: ICookie) {
+
             $scope.login = {
                 clearErrors: (): void => {
                     $scope.login.error = {
@@ -25,8 +28,8 @@ namespace lightItApp {
                     apiService.login(user.name, user.password)
                         .then((response: any) => {
                             if (response.data.success) {
-                                userService.save(user.name, response.data.token, user.rememberMe);
-                                $location.path("/");
+                                userService.save(user.name, response.data.token);
+                                $window.history.back();
                             } else {
                                 $scope.login.error = {
                                     status: true,

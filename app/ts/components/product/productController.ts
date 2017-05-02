@@ -12,6 +12,7 @@ namespace lightItApp {
             private apiService: IApi,
             private userService: ICookie,
             private allProductsData: any) {
+
             apiService.getProductReview($routeParams.id).then((response: any) => {
                 for (let product of allProductsData) {
                     if (product.id.toString() === $routeParams.id) {

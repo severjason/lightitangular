@@ -112,7 +112,7 @@
 
   } //.comments-header
 
-  #post-review-container {
+  .post-review-container {
     border-bottom: $test-border;
     border-top: $test-border;
     margin: $comment-margin auto;
@@ -128,7 +128,15 @@
       margin: 0;
     }
 
-    #post-review-warning {
+    input {
+      height: $rate-height;
+      line-height: $rate-height;
+      cursor: pointer;
+      margin: 0;
+      width: $rate-height / 2;
+    }
+
+    .post-review-warning {
       color: $alert;
       display: none;
       float: left;
@@ -138,12 +146,15 @@
       margin-left: $comment-margin;
     }
 
-    #post-review-rate {
+    .post-review-rate {
       border-radius: $border-radius;
       display: block;
       float: left;
+      font-weight: bold;
       height: $rate-height;
-      width: $rate-width;
+      line-height: $rate-height;
+      margin-right: $rate-margin;
+      min-width: $rate-width / 2;
     }
 
     textarea {

@@ -1,5 +1,5 @@
 <h4 class="text-center">Please enter you login and password:</h4>
-<div id="login_form" class="app-forms">
+<div class="app-forms">
     <form name="loginForm">
 
         <div class="form-group"
@@ -20,11 +20,6 @@
             <div data-ng-show="loginForm.$submitted || loginForm.password.$touched">
                 <div class="warning" data-ng-show="loginForm.password.$error.required">Password is required!</div>
             </div>
-        </div>
-        <div class="form-group checkbox">
-            <label>
-                <input type="checkbox" data-ng-model="user.rememberMe"> Remember me
-            </label>
         </div>
         <div class="form-group text-center">
             <button data-ng-disabled="loginForm.$invalid" type="submit" class="btn btn-default"

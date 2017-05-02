@@ -20,7 +20,6 @@ var lightItApp;
                     $scope.signUpForm.$setUntouched();
                 },
                 submit: (newUser) => {
-                    $scope.signUp.clearErrors();
                     apiService.signUp(newUser.name, newUser.password)
                         .then((response) => {
                         if (response.data.success) {
@@ -33,6 +32,7 @@ var lightItApp;
                             };
                         }
                         else {
+                            $scope.signUp.clearErrors();
                             $scope.signUp.error = {
                                 status: true,
                                 message: response.data.message,

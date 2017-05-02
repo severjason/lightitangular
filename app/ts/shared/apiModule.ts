@@ -4,6 +4,8 @@ namespace lightItApp {
     import UnderscoreStatic = _.UnderscoreStatic;
 
     export interface IApi extends ng.IDirective {
+        loginUrl: string;
+        signUpUrl: string;
         getProducts(): any;
         getProductReview(productId: string): any;
         signUp(name: string, password: string): any;
@@ -19,17 +21,20 @@ namespace lightItApp {
         private productsUrlStr: string;
         private productReviewUrlStr: string;
         private signUpUrlStr: string;
+        private registerUrlStr: string;
         private loginUrlStr: string;
         private httpService: ng.IHttpService;
         private underscore: UnderscoreStatic;
         private userCookieService: ICookie;
 
         constructor($http: ng.IHttpService, _: UnderscoreStatic, userService: ICookie) {
-            this.apiUrlStr = "http://smktesting.herokuapp.com/";
-            this.productsUrlStr = "api/products/";
-            this.productReviewUrlStr = "api/reviews/";
-            this.signUpUrlStr = "api/register/";
-            this.loginUrlStr = "api/login/";
+            this.apiUrlStr = "http://smktesting.herokuapp.com/api";
+            this.productsUrlStr = "/products";
+            this.productReviewUrlStr = "/reviews";
+            this.signUpUrlStr = "/signup";
+            // server API use '/register' but front-end part - '/signup'
+            this.registerUrlStr = "/register";
+            this.loginUrlStr = "/login";
             this.httpService = $http;
             this.underscore = _;
             this.userCookieService = userService;
@@ -55,6 +60,10 @@ namespace lightItApp {
             return this.signUpUrlStr;
         }
 
+        get registerUrl(): string {
+            return this.registerUrlStr;
+        }
+
         get loginUrl(): string {
             return this.loginUrlStr;
         }
@@ -64,22 +73,22 @@ namespace lightItApp {
         }
 
         public getProducts(): any {
-            return this.http.get(this.apiUrl + this.productsUrl);
+            return this.http.get(this.apiUrl + this.productsUrl + "/");
         }
 
         public getProductReview(productId: string): any {
-            return this.http.get(this.apiUrl + this.productReviewUrlStr + `${productId}`);
+            return this.http.get(this.apiUrl + this.productReviewUrlStr + `/${productId}`);
         }
 
         public signUp(signUpName: string, signUpPassword: string): any {
-            return this.http.post(this.apiUrl + this.signUpUrl, {
+            return this.http.post(this.apiUrl + this.registerUrl + "/", {
                 username: this._.escape(signUpName),
                 password: signUpPassword,
             });
         }
 
         public login(loginName: string, loginPassword: string): any {
-            return this.http.post(this.apiUrl + this.loginUrl, {
+            return this.http.post(this.apiUrl + this.loginUrl + "/", {
                 headers: {"x-access-token": this.userService.getToken()},
                 username: this._.escape(loginName),
                 password: loginPassword,

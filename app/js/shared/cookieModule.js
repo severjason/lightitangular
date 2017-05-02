@@ -21,12 +21,9 @@ var lightItApp;
                 loggedIn: loggedInValue,
             };
         }
-        save(name, token, rememberUser) {
+        save(name, token) {
             this.cookie(this.cookieUserName, name);
             this.cookie(this.cookieToken, token);
-            if (rememberUser) {
-                this.cookie(this.cookieRememberUser, rememberUser);
-            }
             this.setRootUserInfo(name, true);
         }
         ;
@@ -38,13 +35,12 @@ var lightItApp;
             return (this.cookie(this.cookieUserName)) ? this.cookie(this.cookieUserName) : "";
         }
         ;
-        rememberUser() {
-            return !!this.cookie(this.cookieRememberUser);
+        userLoggedIn() {
+            return (this.rootScope.userInfo) ? this.rootScope.userInfo.loggedIn : false;
         }
         clearAll() {
             this.cookie.remove(this.cookieUserName);
             this.cookie.remove(this.cookieToken);
-            this.cookie.remove(this.cookieRememberUser);
             this.setRootUserInfo("", false);
         }
         ;

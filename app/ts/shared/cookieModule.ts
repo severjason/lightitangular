@@ -2,11 +2,11 @@ namespace lightItApp {
     "use strict";
 
     export interface ICookie extends ng.IDirective {
-        save(name: string, token: string, rememberUser?: string): void;
+        save(name: string, token: string): void;
         getToken(): string | boolean;
         setRootUserInfo(name: string, loggedInValue: boolean): void;
         getUserName(): string;
-        rememberUser(): boolean;
+        userLoggedIn(): boolean;
         clearAll(): void;
     }
 
@@ -40,12 +40,9 @@ namespace lightItApp {
             };
         }
 
-        public save(name: string, token: string, rememberUser?: string): void {
+        public save(name: string, token: string): void {
             this.cookie(this.cookieUserName, name);
             this.cookie(this.cookieToken, token);
-            if (rememberUser) {
-                this.cookie(this.cookieRememberUser, rememberUser);
-            }
             this.setRootUserInfo(name, true);
         };
 
@@ -57,17 +54,15 @@ namespace lightItApp {
             return (this.cookie(this.cookieUserName)) ? this.cookie(this.cookieUserName) : "";
         };
 
-        public rememberUser(): boolean {
-            return !!this.cookie(this.cookieRememberUser);
+        public userLoggedIn(): boolean {
+            return (this.rootScope.userInfo) ? this.rootScope.userInfo.loggedIn : false;
         }
 
         public clearAll(): void {
             this.cookie.remove(this.cookieUserName);
             this.cookie.remove(this.cookieToken);
-            this.cookie.remove(this.cookieRememberUser);
             this.setRootUserInfo("", false);
         };
-
     }
 
     angular

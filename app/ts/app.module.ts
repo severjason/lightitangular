@@ -11,7 +11,16 @@ namespace lightItApp {
         }
     }
     angular
-        .module("lightItApp", ["appRouting", "appAPI", "appHome", "appProduct", "appSignUp", "appLogin", "appLogout"])
+        .module("lightItApp",
+            [
+                "appRouting",
+                "appAPI",
+                "appHome",
+                "appProduct",
+                "appSignUp",
+                "appLogin",
+                "appLogout",
+            ])
         .config(App);
 
 }

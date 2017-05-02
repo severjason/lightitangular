@@ -31,11 +31,11 @@ namespace lightItApp {
                             return apiService.getProducts()
                                 .then((response: any): any => {
                                     return response.data;
-                                }, (error: Error): any => {
+                                }, (): any => {
                                     return false;
                                 });
-                        }]
-                    }
+                        }],
+                    },
                 })
                 .otherwise({redirectTo: "/"});
         }
@@ -43,5 +43,24 @@ namespace lightItApp {
 
     angular
         .module("appRouting", ["ngRoute"])
-        .config(Routes);
+        .config(Routes)
+        .run(($rootScope: ng.IRootScopeService,
+              $location: ng.ILocationService,
+              userService: ICookie,
+              apiService: IApi,
+        ) => {
+            $rootScope.$on("$routeChangeStart", (event, next, current) => {
+                if (next !== undefined) {
+                    if (userService.getUserName() && userService.getToken()) {
+                        console.log(userService.getUserName());
+                        userService.setRootUserInfo(userService.getUserName(), true);
+                    }
+                    if (userService.userLoggedIn() &&
+                        ($location.path() === apiService.loginUrl ||
+                        $location.path() === apiService.signUpUrl)) {
+                        $location.path("/");
+                    }
+                }
+            });
+        });
 }

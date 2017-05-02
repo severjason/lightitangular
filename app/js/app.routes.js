@@ -28,11 +28,11 @@ var lightItApp;
                             return apiService.getProducts()
                                 .then((response) => {
                                 return response.data;
-                            }, (error) => {
+                            }, () => {
                                 return false;
                             });
-                        }]
-                }
+                        }],
+                },
             })
                 .otherwise({ redirectTo: "/" });
         }
@@ -40,5 +40,20 @@ var lightItApp;
     Routes.$inject = ["$routeProvider"];
     angular
         .module("appRouting", ["ngRoute"])
-        .config(Routes);
+        .config(Routes)
+        .run(($rootScope, $location, userService, apiService) => {
+        $rootScope.$on("$routeChangeStart", (event, next, current) => {
+            if (next !== undefined) {
+                if (userService.getUserName() && userService.getToken()) {
+                    console.log(userService.getUserName());
+                    userService.setRootUserInfo(userService.getUserName(), true);
+                }
+                if (userService.userLoggedIn() &&
+                    ($location.path() === apiService.loginUrl ||
+                        $location.path() === apiService.signUpUrl)) {
+                    $location.path("/");
+                }
+            }
+        });
+    });
 })(lightItApp || (lightItApp = {}));
