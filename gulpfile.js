@@ -26,6 +26,11 @@
         images: 'app/images/**/*.*+(png|jpeg|jpg|svg|gif)',
         fonts: ['node_modules/bootstrap-sass/assets/fonts/**/*'],
         ts: ['app/ts/**/*.ts'],
+        ignored:['underscore-min.js',
+            'angular.min-compiled.js',
+            'angular-route.min.js',
+            'angular-cookie.min.js',
+            'ng-classified.min.js'],
         tsCompiled: 'js/',
         angularViews:'app/ts/**/**/*.html',
         js: ['app/js/**/*.js']
@@ -75,9 +80,10 @@
      *  Concat all js and css into one file
      */
     gulp.task('useref', function () {
-        return gulp.src(path.app + '**/*.html')
+        return gulp.src(path.app + 'index.html')
             .pipe(useref())
             .pipe(gulpIf('*.js', babel({
+                ignore: path.ignored,
                 presets: ['es2015']
             })))
             .pipe(gulpIf('*.js', uglify()))
@@ -157,7 +163,7 @@
      *  Task to builds an app for production
      */
     gulp.task('build', function () {
-        runSequence(['css','ts', 'viewsToDist', 'useref', 'img', 'fonts'])
+        runSequence(['css', 'ts', 'viewsToDist', 'useref', 'img', 'fonts'])
     });
 
     /**

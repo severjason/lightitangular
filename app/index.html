@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" data-ng-app="lightItApp" >
 <head>
     <base href="http://localhost:3000/index.html">
     <meta charset="utf-8">
 
-    <title>Page Title</title>
+    <title data-ng-bind="title + ' | LightItTestApp'"></title>
 
     <meta name="description" content="">
     <meta name="language" content="en-us"/>
@@ -27,7 +27,7 @@
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
-<body data-ng-app="lightItApp" >
+<body >
 
 <header role="banner" class="max-width">
     <div class="header-text left bold">
@@ -70,15 +70,22 @@
     </small>
 
 </footer>
-<!--build:js angular/angular.js defer -->
-<script defer src="../node_modules/angular/angular-compiled.js"></script>
-<script defer src="../node_modules/angular-route/angular-route.js"></script>
-<script defer src="../node_modules/angular-cookie/angular-cookie.js"></script>
+<!--build:js lib/angular/angular.min-compiled.js defer -->
+<script defer src="../node_modules/angular/angular.min-compiled.js"></script>
 <!-- endbuild -->
-<!--build:js lib/underscore.min.js defer -->
+<!--build:js lib/angular/angular-route.min.js defer -->
+<script defer src="../node_modules/angular-route/angular-route.min.js"></script>
+<!-- endbuild -->
+<!--build:js lib/angular/angular-cookie.min.js defer -->
+<script defer src="../node_modules/angular-cookie/angular-cookie.min.js"></script>
+<!-- endbuild -->
+<!--build:js lib/underscore-min.js defer -->
 <script defer src="../node_modules/underscore/underscore-min.js"></script>
 <!-- endbuild -->
-<!--build:js angular/app.js defer -->
+<!--build:js lib/ng-classified.min.js defer -->
+<script defer src="../node_modules/ng-classified/dist/ng-classified.min.js"></script>
+<!-- endbuild -->
+<!--build:js js/app/app.js defer -->
 <script defer src="js/app.module.js"></script>
 <script defer src="js/app.routes.js"></script>
 <script defer src="js/lib/underscoreModule.js"></script>
@@ -93,8 +100,6 @@
 <script defer src="js/components/signup/compareToDirective.js"></script>
 
 <!-- endbuild -->
-<!--build:js js/main.min.js defer -->
-<!--<script defer src="js/main.js"></script>-->
-<!-- endbuild -->
+
 </body>
 </html>

@@ -5,13 +5,15 @@ namespace lightItApp {
 
         public static $inject: string[] = ["$routeProvider"];
 
-        constructor($routeProvider: ng.route.IRouteProvider) {
+        constructor($routeProvider: any) {
             $routeProvider
                 .when("/", {
+                    title: "Home page",
                     templateUrl: "js/components/home/_homeView.html",
                     controller: "HomeController",
                 })
                 .when("/login", {
+                    title: "Login",
                     templateUrl: "js/components/login/_loginView.html",
                     controller: "LoginController",
                 })
@@ -20,10 +22,12 @@ namespace lightItApp {
                     controller: "LogoutController",
                 })
                 .when("/signup", {
+                    title: "Sign up",
                     templateUrl: "js/components/signup/_signUpView.html",
                     controller: "SignUpController",
                 })
                 .when("/product/:id", {
+                    title: "Product info",
                     templateUrl: "js/components/product/_productView.html",
                     controller: "ProductController",
                     resolve: {
@@ -42,15 +46,19 @@ namespace lightItApp {
     }
 
     angular
-        .module("appRouting", ["ngRoute"])
+        .module("appRouting", ["ngRoute", "ngClassified"])
+        .constant("$classify", true)
         .config(Routes)
-        .run(($rootScope: ng.IRootScopeService,
+        .run(["$rootScope", "$location", "userService", "apiService", ($rootScope: ng.IRootScopeService,
               $location: ng.ILocationService,
               userService: ICookie,
               apiService: IApi,
         ) => {
-            $rootScope.$on("$routeChangeStart", (event, next, current) => {
-                if (next !== undefined) {
+            $rootScope.$on("$routeChangeStart", (event, current, prev) => {
+                if (current !== undefined) {
+                    if (current.hasOwnProperty("$$route")) {
+                        $rootScope.title = current.$$route.title;
+                    }
                     if (userService.getUserName() && userService.getToken()) {
                         userService.setRootUserInfo(userService.getUserName(), true);
                     }
@@ -61,5 +69,10 @@ namespace lightItApp {
                     }
                 }
             });
-        });
+            $rootScope.$on("$routeChangeSuccess", (event, current, prev) => {
+                    if (current.hasOwnProperty("$$route")) {
+                        $rootScope.title = current.$$route.title;
+                    }
+            });
+        }]);
 }
