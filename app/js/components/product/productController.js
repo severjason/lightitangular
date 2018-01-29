@@ -11,7 +11,7 @@ var lightItApp;
             this.allProductsData = allProductsData;
             apiService.getProductReview($routeParams.id)
                 .then((response) => {
-                for (let product of allProductsData) {
+                for (const product of allProductsData) {
                     if (product.id.toString() === $routeParams.id) {
                         $scope.product = product;
                     }

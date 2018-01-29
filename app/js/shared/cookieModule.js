@@ -11,7 +11,6 @@ var lightItApp;
             this.ipCookie = ipCookieService;
             this.rootScope = $rootScope;
         }
-        ;
         get cookie() {
             return this.ipCookie;
         }
@@ -26,15 +25,12 @@ var lightItApp;
             this.cookie(this.cookieToken, token);
             this.setRootUserInfo(name, true);
         }
-        ;
         getToken() {
             return (this.cookie(this.cookieToken)) ? this.cookie(this.cookieToken) : "";
         }
-        ;
         getUserName() {
             return (this.cookie(this.cookieUserName)) ? this.cookie(this.cookieUserName) : "";
         }
-        ;
         userLoggedIn() {
             return (this.rootScope.userInfo) ? this.rootScope.userInfo.loggedIn : false;
         }
@@ -43,7 +39,6 @@ var lightItApp;
             this.cookie.remove(this.cookieToken);
             this.setRootUserInfo("", false);
         }
-        ;
     }
     AppCookie.$inject = ["ipCookie", "$rootScope"];
     AppCookie.serviceName = "userService";

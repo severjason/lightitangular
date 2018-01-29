@@ -27,7 +27,7 @@ namespace lightItApp {
             this.cookieRememberUser = "rememberUser";
             this.ipCookie = ipCookieService;
             this.rootScope = $rootScope;
-        };
+        }
 
         get cookie(): angular.cookie.CookieService {
             return this.ipCookie;
@@ -44,15 +44,15 @@ namespace lightItApp {
             this.cookie(this.cookieUserName, name);
             this.cookie(this.cookieToken, token);
             this.setRootUserInfo(name, true);
-        };
+        }
 
         public getToken(): string | boolean {
             return (this.cookie(this.cookieToken)) ? this.cookie(this.cookieToken) : "";
-        };
+        }
 
         public getUserName(): string {
             return (this.cookie(this.cookieUserName)) ? this.cookie(this.cookieUserName) : "";
-        };
+        }
 
         public userLoggedIn(): boolean {
             return (this.rootScope.userInfo) ? this.rootScope.userInfo.loggedIn : false;
@@ -62,7 +62,7 @@ namespace lightItApp {
             this.cookie.remove(this.cookieUserName);
             this.cookie.remove(this.cookieToken);
             this.setRootUserInfo("", false);
-        };
+        }
     }
 
     angular

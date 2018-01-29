@@ -50,10 +50,9 @@ namespace lightItApp {
         .constant("$classify", true)
         .config(Routes)
         .run(["$rootScope", "$location", "userService", "apiService", ($rootScope: ng.IRootScopeService,
-              $location: ng.ILocationService,
-              userService: ICookie,
-              apiService: IApi,
-        ) => {
+                                                                       $location: ng.ILocationService,
+                                                                       userService: ICookie,
+                                                                       apiService: IApi) => {
             $rootScope.$on("$routeChangeStart", (event, current, prev) => {
                 if (current !== undefined) {
                     if (current.hasOwnProperty("$$route")) {
@@ -64,15 +63,15 @@ namespace lightItApp {
                     }
                     if (userService.userLoggedIn() &&
                         ($location.path() === apiService.loginUrl ||
-                        $location.path() === apiService.signUpUrl)) {
+                            $location.path() === apiService.signUpUrl)) {
                         $location.path("/");
                     }
                 }
             });
             $rootScope.$on("$routeChangeSuccess", (event, current, prev) => {
-                    if (current.hasOwnProperty("$$route")) {
-                        $rootScope.title = current.$$route.title;
-                    }
+                if (current.hasOwnProperty("$$route")) {
+                    $rootScope.title = current.$$route.title;
+                }
             });
         }]);
 }

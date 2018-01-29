@@ -16,7 +16,7 @@ namespace lightItApp {
 
             apiService.getProductReview($routeParams.id)
                 .then((response: any) => {
-                    for (let product of allProductsData) {
+                    for (const product of allProductsData) {
                         if (product.id.toString() === $routeParams.id) {
                             $scope.product = product;
                         }
