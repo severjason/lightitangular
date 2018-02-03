@@ -58,6 +58,13 @@ namespace lightItApp {
             return (this.rootScope.userInfo) ? this.rootScope.userInfo.loggedIn : false;
         }
 
+        public setHeaders(): any {
+            return {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${this.getToken()}`,
+            };
+        }
+
         public clearAll(): void {
             this.cookie.remove(this.cookieUserName);
             this.cookie.remove(this.cookieToken);

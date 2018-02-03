@@ -34,6 +34,12 @@ var lightItApp;
         userLoggedIn() {
             return (this.rootScope.userInfo) ? this.rootScope.userInfo.loggedIn : false;
         }
+        setHeaders() {
+            return {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${this.getToken()}`,
+            };
+        }
         clearAll() {
             this.cookie.remove(this.cookieUserName);
             this.cookie.remove(this.cookieToken);

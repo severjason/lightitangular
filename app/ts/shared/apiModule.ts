@@ -9,8 +9,8 @@ namespace lightItApp {
         getProducts(): any;
         getProductReview(productId: string): any;
         postReview(productId: string, review: any): any;
-        signUp(name: string, password: string): any;
-        login(name: string, password: string): any;
+        signUp(signUpName: string, signUpPassword: string): any;
+        login(loginName: string, loginPassword: string): any;
     }
 
     class API {
@@ -94,17 +94,20 @@ namespace lightItApp {
 
         public login(loginName: string, loginPassword: string): any {
             return this.http.post(this.apiUrl + this.loginUrl + "/", {
-                headers: {"x-access-token": this.userService.getToken()},
                 username: this._.escape(loginName),
                 password: loginPassword,
             });
         }
 
         public postReview(productId: string, review: any): any {
-            return this.http.post(this.apiUrl + this.productReviewUrl + `/${productId}`, {
-                headers: {"x-access-token": this.userService.getToken()},
-                rate: review.rate,
-                text: this._.escape(review.text),
+            return this.http({
+                method: "POST",
+                url: this.apiUrl + this.productReviewUrl + `/${productId}`,
+                headers: this.userService.setHeaders(),
+                data: {
+                    rate: review.rate,
+                    text: this._.escape(review.text),
+                },
             });
         }
     }

@@ -14,10 +14,54 @@ namespace lightItApp {
                     private userService: ICookie,
                     private allProductsData: any) {
 
-            apiService.getProductReview($routeParams.id)
+            this.getReviews($routeParams.id, this.products, $scope);
+
+            $scope.newReview = {
+                clearErrors: (): void => {
+                    $scope.newReview.error = {
+                        status: false,
+                    };
+                },
+                submit: (review: any): void => {
+                    if (this.us.userLoggedIn()) {
+                        this.api.postReview(this.routeParams.id, review).then((response: any) => {
+                            this.getReviews(this.routeParams.id, this.products, $scope);
+                            $scope.review.text = "";
+                        });
+                    } else {
+                        $scope.newReview.error = {
+                            status: true,
+                            message: "You should login first",
+                        };
+                        this.$timeout(() => {
+                            $scope.newReview.clearErrors();
+                        }, 2000);
+                    }
+                },
+            };
+        }
+
+        private get us(): ICookie {
+            return this.userService;
+        }
+
+        private get products(): any {
+            return this.allProductsData;
+        }
+
+        private get api(): IApi {
+            return this.apiService;
+        }
+
+        private get routeParams(): ng.route.IRouteParamsService {
+            return this.$routeParams;
+        }
+
+        private getReviews(id: string, products: any, $scope: ng.IScope): void {
+            return  this.api.getProductReview(id)
                 .then((response: any) => {
-                    for (const product of allProductsData) {
-                        if (product.id.toString() === $routeParams.id) {
+                    for (const product of products) {
+                        if (product.id.toString() === id) {
                             $scope.product = product;
                         }
                     }
@@ -30,29 +74,6 @@ namespace lightItApp {
                         message: "Unable to get product info: " + error.message,
                     };
                 });
-
-            $scope.newReview = {
-                clearErrors: (): void => {
-                    $scope.newReview.error = {
-                        status: false,
-                    };
-                },
-                submit: (review: any) => {
-                    if (userService.userLoggedIn()) {
-                        apiService.postReview($routeParams.id, review).then((response: any) => {
-                            console.log(response);
-                        });
-                    } else {
-                        $scope.newReview.error = {
-                            status: true,
-                            message: "You should login first",
-                        };
-                        $timeout(() => {
-                            $scope.newReview.clearErrors();
-                        }, 2000);
-                    }
-                },
-            };
         }
     }
 

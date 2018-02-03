@@ -55,16 +55,19 @@ var lightItApp;
         }
         login(loginName, loginPassword) {
             return this.http.post(this.apiUrl + this.loginUrl + "/", {
-                headers: { "x-access-token": this.userService.getToken() },
                 username: this._.escape(loginName),
                 password: loginPassword,
             });
         }
         postReview(productId, review) {
-            return this.http.post(this.apiUrl + this.productReviewUrl + `/${productId}`, {
-                headers: { "x-access-token": this.userService.getToken() },
-                rate: review.rate,
-                text: this._.escape(review.text),
+            return this.http({
+                method: "POST",
+                url: this.apiUrl + this.productReviewUrl + `/${productId}`,
+                headers: this.userService.setHeaders(),
+                data: {
+                    rate: review.rate,
+                    text: this._.escape(review.text),
+                },
             });
         }
     }
